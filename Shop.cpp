@@ -6,8 +6,6 @@
 
 using namespace std;
 
-;
-AttackBoost;
 
 class Shop : public Player
 {
@@ -15,21 +13,43 @@ public:
 
     void buyitem()  //플레이어가 가지고있는 인벤토리 배열에 아이템 추가 , 플레이어가 가지고있는 gold라는 변수에서 itemprice라는 변수를 빼준다
     {
-        vector<Item*>inventory;
+        int MXI = 10;
+        int Buy = 0;
+        getGold -= ItemPrice;
+        vector<Item*>inventory; // 캐릭터 인벤토리 배열 없음.
         inventory.push_back(itemname_);
-        getGold -= ItemPrice;  //수정이 필요한 상황(player 파트에서 수정완료 , merge 대기중)
+        cout << "몇개를 구매하시겠습니까?" << endl;
+        cin >> Buy;
+        for (int Buy; Buy <= MXI)
+        {
+            getGold -= ItemPrice*Buy
+        }
+        
     }
 
-    void sellitem()
+    void sellitem() 
     {
-        vector<Item*>inventory;
+        int MNI <= 1; // 아이템을 1개 미만으로 가지기는 불가능.
+        int Sell > 0; // 아이템을 0개 넘게 팔기는 불가능.
         getGold += (ItemPrice * 0.6);
-        inventory.erase(itemname_)
+        vector<Item*>inventory;
+        inventory.erase(itemname_);
+        cout << "몇개를 판매하시겠습니까?" << endl;
+        cin >> Sell;
+        for (int MNI; int Sell;)
+        {
+            if(int MNI >)
+            {
+                getGold += int(ItemPrice * Sell) * 0.6
+            }
+        }
+           
     }
 
     void displayitems()
     {
-        cout << "
+        cout << "= = = 상점 물품 목록 = = =" << endl;
+        cout << "[이름 : " << (itemname_) << ", 가격 " << (ItemPrice) << "G]" << endl;
     }
 
 
@@ -39,7 +59,7 @@ private:
     vector<Shop*> availableitems{ HPpotion , ATKBoost }
 };
 
-
+//123
 
 /*
 2. **상점 시스템**

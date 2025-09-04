@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "Playerl.h"
+#include "Player.h"
 
 using namespace std;
 
@@ -9,7 +9,11 @@ using namespace std;
 
 void Player::levelUp() // 레벨업시 체력 풀 회복
 {
-	health += (level * 20); // 레벨업 체력
+	MaxHealth += (level * 20); // 레벨업 체력
 	attack += (level * 5); // 레벨업 공격력
-
+	health = MaxHealth;
+	if (level == 10) { return; }
+	else {
+		level += 1;
+	}
 }

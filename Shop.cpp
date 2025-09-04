@@ -24,7 +24,7 @@ public:
         {
             getGold -= ItemPrice*Buy
         }
-
+        
     }
 
     void sellitem() 

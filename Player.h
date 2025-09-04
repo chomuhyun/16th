@@ -1,11 +1,19 @@
 #pragma once
 #include <iostream>
 #include <vector>
+
 using namespace std;
 
 class Player
 {
 public: // 멤버함수
+
+	Player(string name) {}
+
+	int getGold() {
+
+		return gold;
+	}
 
 	void levelUp();
 
@@ -17,14 +25,17 @@ private: // 멤버변수
 
 	//레벨 공격력 초기체력 고정
 	string name;
+	int* P_level;
 	int level;
+	int HP;
 	int health;
+	int* P_health;
 	int MaxHealth;
 	int attack;
-	int experience;
+	int* P_attack;
 	int gold;
+	int experience;
+	
 
-	vector<Item*>inventory;
-
-
+	
 };

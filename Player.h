@@ -25,3 +25,6 @@ private: // ¸â¹öº¯¼ö
 	int gold;
 
 	vector<Item*>inventory;
+
+
+};

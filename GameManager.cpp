@@ -1,0 +1,58 @@
+#include <iostream>
+#include "Monster.h"
+#include "Player.h"
+#include <memory>
+#include <vector>
+
+using namespace std;
+
+class GameManager
+{
+public:
+	GameManager();
+	~GameManager();
+
+	void generateMonster();
+	void battle();
+
+
+	int generateBossMonster()
+	{
+
+	}
+
+	void visitShop()
+	{
+
+	}
+
+	void displayInventory()
+	{
+
+	}
+
+private:
+	Player player;
+	unique_ptr<Monster> nearbyMonster;
+};
+
+void GameManager::generateMonster()
+{
+	nearbyMonster = unique_ptr<Monster>();
+	cout << "몬스터 : " << nearbyMonster->getName() << "가(이) 나타났습니다!" << endl;
+}
+
+void GameManager::battle()
+{
+
+}
+
+GameManager::GameManager() : player("Hero", 1, 200, 30, 0)
+{
+
+}
+
+
+GameManager::~GameManager()
+{
+}

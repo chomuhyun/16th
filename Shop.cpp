@@ -59,7 +59,7 @@ private:
     vector<Shop*> availableitems{ HPpotion , ATKBoost }
 };
 
-
+//123
 
 /*
 2. **상점 시스템**

@@ -3,7 +3,6 @@
 #include "Player.h"
 #include <memory>
 #include <vector>
-
 using namespace std;
 
 class GameManager
@@ -56,3 +55,5 @@ GameManager::GameManager() : player("Hero", 1, 200, 30, 0)
 GameManager::~GameManager()
 {
 }
+
+// ½Â¿ø´Ô ¹Ùº¸ ~~

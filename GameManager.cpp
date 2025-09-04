@@ -56,4 +56,4 @@ GameManager::~GameManager()
 {
 }
 
-// ½Â¿ø´Ô ¹Ùº¸ ~~
+// ¿À´Ã ÀÛ¾÷³¡!

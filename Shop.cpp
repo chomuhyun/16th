@@ -2,37 +2,44 @@
 #include <vector>
 #include <string>
 #include "Player.h"
+#include "Inventory.h"
 
 using namespace std;
 
-class item
+;
+AttackBoost;
+
+class Shop : public Player
 {
 public:
 
-void buyitem()
-{
-    gold -= ItemPrice;
-    avaliableitems.push_back(HealthPotion);
-}
+    void buyitem()  //플레이어가 가지고있는 인벤토리 배열에 아이템 추가 , 플레이어가 가지고있는 gold라는 변수에서 itemprice라는 변수를 빼준다
+    {
+        vector<Item*>inventory;
+        inventory.push_back(itemname_);
+        getGold -= ItemPrice;  //수정이 필요한 상황(player 파트에서 수정완료 , merge 대기중)
+    }
 
-void sellitem()
-{
-        gold += (ItemPrice * 0.6)
-}
+    void sellitem()
+    {
+        vector<Item*>inventory;
+        getGold += (ItemPrice * 0.6);
+        inventory.erase(itemname_)
+    }
 
-void displayitems()
-{
-    cout << "
-}
+    void displayitems()
+    {
+        cout << "
+    }
+
 
 private:
-    string name_;
-    int item
-    vector<shop*> availableitems{ HealthPotion , AttackBoost }
-}
+    int ItemPrice;
+    string itemname_;
+    vector<Shop*> availableitems{ HPpotion , ATKBoost }
+};
 
 
-vector<item*> inventory{}
 
 /*
 2. **상점 시스템**

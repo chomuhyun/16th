@@ -3,6 +3,7 @@
 #include "Player.h"
 #include <memory>
 #include <vector>
+
 using namespace std;
 
 class GameManager
@@ -56,4 +57,3 @@ GameManager::~GameManager()
 {
 }
 
-// 오늘 작업끝!

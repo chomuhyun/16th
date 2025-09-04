@@ -36,3 +36,10 @@ public:
 	std::string getName() override; //부모클래스 getName(아이템 이름 반환) 받아와 구현
 	void use(player: Player*) override; //부모클래스(포션 사용) 받아와 구현
 };
+
+// 인벤토리 클래스 추가하기
+class Inventory
+{
+	Inventory();
+	~Inventory() {};
+};

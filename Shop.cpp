@@ -3,11 +3,37 @@
 #include <string>
 #include "Player.h"
 #include "Inventory.h"
+#include "Shop.h"
 
 using namespace std;
+//전투에서 승리한 골드로 상점에서 아이템을 구매할 수 있어야되고 구매한 아이템은 인벤토리에 보관되어야함.
+//상점에서 아이템은 단일,다수의 갯수를 구매할 수 있어야함
+//캐릭터가 가지고있는 아이템을 상점에 판매할수있어야하고 일정 퍼센테이지만큼 판매되어야함
+//상점에 판매되고있는 아이템에 목록을 띄우는 창을 만들어야함
 
+/*1.구매
+1 - 1. 상품목록 보여주기.
+1 - 2. 한개 혹은 다수 구매 가능
+1 - 3. 구매와 동시에 수량에 비례해서 골드가 소멸되어야함
+2.판매
+2 - 1. 한개 혹은 다수 판매 가능
+2 - 2. 판매와 동시에 인벤토리에서 소멸되어야함
+2 - 3. 소멸되고 일정량의 돈을 받음
 
-class Shop : public Player
+- --
+
+1. 상품목록 출력(물건 이름과 ID와 가격 출력)
+2. 유저에게 구매할 상품에대한 입력을 받음. (입력)
+3. 플레이어가 소지한 골드를 확인하고 모자르면 취소
+4. 골드를 다시 확인하고 물건 가격보다 높으면 소지 골드 - 물건
+5. 플레이어 인벤토리에 구매한 물건이 들어감
+*/
+
+Item* item = new HealthPotion();
+Player player;
+Inventory inventory;
+
+class Shop
 {
 public:
 
@@ -15,51 +41,51 @@ public:
     {
         int MXI = 10;
         int Buy = 0;
-        getGold -= ItemPrice;
-        vector<Item*>inventory; // 캐릭터 인벤토리 배열 없음.
-        inventory.push_back(itemname_);
+        int g;
+        g = player.getGold();
+        g -= ItemPrice;
+        vector<Item*>inv;                   // 캐릭터 인벤토리 배열 없음.
+        inv.push_back(itemname_);
         cout << "몇개를 구매하시겠습니까?" << endl;
         cin >> Buy;
-        for (int Buy; Buy <= MXI)
+        for (int Buy; Buy <= MXI;)
         {
-            getGold -= ItemPrice*Buy
+            g -= ItemPrice * Buy;
         }
         
     }
 
-    void sellitem() 
+    void sellitem()
     {
         int MNI <= 1; // 아이템을 1개 미만으로 가지기는 불가능.
         int Sell > 0; // 아이템을 0개 넘게 팔기는 불가능.
-        getGold += (ItemPrice * 0.6);
-        vector<Item*>inventory;
-        inventory.erase(itemname_);
+        g += (ItemPrice * 0.6);
+        vector<Item*>inv;
+        inv.erase(getName);
         cout << "몇개를 판매하시겠습니까?" << endl;
         cin >> Sell;
         for (int MNI; int Sell;)
         {
-            if(int MNI >)
+            if (int MNI > 0)
             {
                 getGold += int(ItemPrice * Sell) * 0.6
             }
         }
-           
+
     }
 
     void displayitems()
     {
+
+        vector<inv*> ShopList{ new HealthPotion( name , 10 ), new AttackBoost( name , 5 ), new Shop};
+        pitems_
         cout << "= = = 상점 물품 목록 = = =" << endl;
         cout << "[이름 : " << (itemname_) << ", 가격 " << (ItemPrice) << "G]" << endl;
     }
 
-
-private:
-    int ItemPrice;
-    string itemname_;
-    vector<Shop*> availableitems{ HPpotion , ATKBoost }
 };
 
-//123
+
 
 /*
 2. **상점 시스템**

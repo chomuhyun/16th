@@ -8,11 +8,11 @@ GameManager gamemanager;
 int main()
 {
 	string nickname;
+	cout << "=======================================\n" << endl;
 	cout << "16조 전사의 모험에 오신것을 환영합니다!\n" << endl;
 	cout << "케릭터 생성을 위해 이름을 입력해주세요!\n" << endl;
 	cin >> nickname;
 	cout << "케릭터 이름 : " << nickname << endl;
-
 	cout << "=======================================\n" << endl;
 	cout << "환영합니다!" << nickname << "님!\n 원하는 선택지를 고르세요 !" << endl;
 

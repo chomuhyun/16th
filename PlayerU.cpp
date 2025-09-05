@@ -18,6 +18,10 @@ void Player::levelUp() // 레벨업시 체력 풀 회복
 		
 	}
 }
-void Player::useItem(int index) {
-
+void Player::addExperience(int amount)
+{
+	experience += amount;
+	if (experience >= 100)
+		experience -= 100;
+	    levelUp();
 }

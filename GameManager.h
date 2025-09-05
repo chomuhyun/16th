@@ -4,21 +4,17 @@
 class GameManager
 {
 public:
-	GameManager();
-	~GameManager();
+	void selectAction() {}
 
-	void generateMonster();
-	void battle();
+	void visitShop() {}
 
-	void generateBossMonster(){}
+	void displayInventory() {}
 
-	void selectAction(){}
+	void generateMonster() {}
 
-	void visitShop(){}
+	void battle() {}
 
-	void displayInventory(){}
-
-
+	void generateBossMonster() {}
 private:
 	Player player;
 	unique_ptr<Monster> nearbyMonster;

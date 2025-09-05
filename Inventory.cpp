@@ -10,10 +10,9 @@ std::string AttackBoost::getName() {
 	return name;
 }
 
-void AttackBoost::use(player: Player*) {
-	Player->attack += attackIncrease;
-	std::cout << name << " 사용! 공격력이 " << attackIncrease << "만큼 증가하였습니다. 현재 공격력 "
-		<< Player->attack << "\n";
+void AttackBoost::use(Player& player) {
+	player.attack += attackIncrease; //player 정의되어야함
+	std::cout << name << " 사용! 공격력이 " << attackIncrease << "만큼 증가하였습니다. \n";
 
 }
 
@@ -25,11 +24,9 @@ std::string HealthPotion::getName() {
 	return name;
 }
 
-void HealthPotion::use(player: Player*) {
-	Player->health += healthRestore;
-	std::cout << name << " 사용! 체력이 " << healthRestore << "만큼 회복되었습니다. 현재 체력 "
-		<< Player->health << "\n";
-
+void HealthPotion::use(Player& player) {
+	player.health += healthRestore;
+	std::cout << name << " 사용! 체력이 " << healthRestore << "만큼 회복되었습니다. \n";
 }
 
 ExperienceBoost::ExperienceBoost(std::string n, int Increase)
@@ -40,8 +37,8 @@ std::string ExperienceBoost::getName() {
 	return name;
 }
 
-void ExperienceBoost::use(player: Player*) {
-	Player->experience += experienceIncrease;
+void ExperienceBoost::use(Player& player) {
+	player.experience += experienceIncrease;
 	std::cout << name << " 사용! 경험치 " << experienceIncrease << "만큼 획득하었습니다." << "\n";
 
 }

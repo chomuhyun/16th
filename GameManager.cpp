@@ -6,7 +6,7 @@
 #include <vector>
 #include "GameManager.h"
 using namespace std;
-fff
+
 void GameManager::selectAction() 
 {
 	int selectaction;

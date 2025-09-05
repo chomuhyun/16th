@@ -43,9 +43,17 @@ void Player::displayStatus()
 
 
 
+// 전투
+// bool battle = false - 기본 전투 승리여부 (상의 해야함)
 
-//일반 몬스터전투 승리시
+int Player::battle(bool battle) //일반 몬스터전투 승리시 경험치 + 50 / 골드 + 12
+{
+	cout << "전투에서 승리했습니다 ! " << endl;
+	cout << " * 획득 보상 * " << endl;
+	cout << name << "가" << experience + 50 << "EXP와" << gold + 12 << "골드를 획득 했습니다.";
+	cout << "현재 EXP : " << experience << "/100, 골드 : " << gold << endl;
+	
+}
 
-gold += 12
-
-inventory.push_back()
+//랜덤
+inventory.push_back(Item) // 아이템 30% 확률

@@ -28,7 +28,7 @@ void GameManager::selectAction()
 
 void GameManager::visitShop()
 {
-	cout << "상점에 입장 하시겠습니까? Y/1 N/2 " << endl;
+	cout << "상점에 입장 하시겠습니까? Y/1 N/2\n " << endl;
 	// 상점에 입장할것인지 입력 받은 후에 상점페이지로 넘어갈수 있는 함수필요
 	// 만약 상점에 입장하는 입력값을 받았다면 함수호출
 	// 그렇지 않다면 다시 전투를 할지 상점을 갈지 선택하는 함수 필요

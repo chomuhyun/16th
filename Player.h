@@ -16,7 +16,7 @@ public: // 멤버함수
 	}
 
 	void levelUp();
-
+	void addExperience(int amount);
 	void useItem(int index); // 아이템 사용
 
 	void displayStatus(); // 캐릭터 스테이터스 창

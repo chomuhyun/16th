@@ -2,10 +2,21 @@
 #include "Player.h"
 #include "Monster.h"
 #include "Inventory.h"
-
-
+#include "GameManager.h"
+Player player;
+GameManager gamemanager;
 int main()
 {
+	string nickname;
+	cout << "16조 전사의 모험에 오신것을 환영합니다!\n" << endl;
+	cout << "케릭터 생성을 위해 이름을 입력해주세요!\n" << endl;
+	cin >> nickname;
+	cout << "케릭터 이름 : " << nickname << endl;
+
+	cout << "=======================================\n" << endl;
+	cout << "환영합니다!" << nickname << "님!\n 원하는 선택지를 고르세요 !" << endl;
+
+	gamemanager.selectAction();
 	// 게임 자체의 시뮬레이션이 돌아가야함
 	// 케릭터 생성 및 아이디 설정 - 효정
 	// 케릭터가 상점을 갈지 전투를 할지 선택할수있어야함 - 무현

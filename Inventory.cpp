@@ -42,3 +42,9 @@ void ExperienceBoost::use(Player& player) {
 	std::cout << name << " 사용! 경험치 " << experienceIncrease << "만큼 획득하었습니다." << "\n";
 
 }
+void gainItem//아이템 개수++
+
+// 아이템 현재 갯수 및 골드 출력
+void PrintCurrentItemAndGold() {
+	cout << "[이름: " << name_ << ", 총 Gold: " << price_ /* 플레이어 헤더파일 가져오기*/ << "G]" << endl;
+}

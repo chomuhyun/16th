@@ -9,6 +9,9 @@ using namespace std;
 class Shop
 {
 public:
+	Shop();
+	~Shop();
+	
 	string shopitemname; //아이템 이름
 	int shopitemprice; //아이템 가격
 
@@ -17,5 +20,8 @@ public:
 	void displayitem() {}; //아이템 출력  
 private:
 	vector<Item> ShopList;
-
+	Player player;
+	HealthPotion h();
+	AttackBoost a();
+	ExperienceBoost e();
 };

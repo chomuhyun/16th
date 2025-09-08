@@ -19,7 +19,7 @@ void AttackBoost::use(Player& player) { // 공격력 부스트 사용 후 공격력 증가 함�
 
 int AttackBoost::gainItem() // 공격력 부스트 개수 +1
 {
-	numberofAttackBoost++;
+	return numberofAttackBoost++;
 }
 
 int AttackBoost::lossItem() // 공격력 부스트 개수 -1
@@ -28,7 +28,7 @@ int AttackBoost::lossItem() // 공격력 부스트 개수 -1
 		return numberofAttackBoost--;
 	}
 	else {
-		std::cout << "공격력 부스트가 없습니다!" << endl;
+		std::cout << "공격력 부스트가 없습니다!" << std::endl;
 		return 0;
 	}
 }
@@ -49,7 +49,7 @@ void HealthPotion::use(Player& player) { // 회복 포션 사용 후 체력 증가 함수
 
 int HealthPotion::gainItem() // 체력 포션 개수 +1
 {
-	return numberofHealthPotion++;
+	return ++numberofHealthPotion;
 }
 
 int HealthPotion::lossItem() // 체력 포션 개수 -1
@@ -58,7 +58,7 @@ int HealthPotion::lossItem() // 체력 포션 개수 -1
 		return numberofHealthPotion--;
 	}
 	else {
-		std::cout << "체력 포션이 없습니다!" << endl;
+		std::cout << "체력 포션이 없습니다!" << std::endl;
 		return 0;
 	}
 }
@@ -87,12 +87,12 @@ int ExperienceBoost::lossItem()//경험치 부스트 개수 -1
 		return numberofExperienceBoost--;
 	}
 	else {
-		std::cout << "경험치 부스트가 없습니다!" << endl;
+		std::cout << "경험치 부스트가 없습니다!" << std::endl;
 		return 0;
 	}
 }
 //***** 아이템 현재 갯수 및 골드 출력
 void PrintCurrentItemAndGold() {
-	cout << "[이름: " <<  " 메인함수(getter) 가져오기" <<
-		", 총 Gold: " << " 플레이어 (getter) 가져오기" << "G]" << endl;
+	std::cout << "[이름: " <<  " 메인함수(getter) 가져오기" <<
+		", 총 Gold: " << " 플레이어 (getter) 가져오기" << "G]" << std::endl;
 }

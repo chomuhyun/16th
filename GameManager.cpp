@@ -9,9 +9,6 @@
 
 using namespace std;
 
-Player player;
-Shop shop;
-
 void GameManager::GameStart()
 { 
 	string nickname;

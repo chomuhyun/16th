@@ -8,7 +8,7 @@ class Item; // 전방선언
 class Player
 {
 public: // 멤버함수
-
+	Player() {}
 	Player(std::string name);// 생성자
 
 	//getter
@@ -24,11 +24,8 @@ public: // 멤버함수
 	void setGold(int coin); // 골드
 	void setHealth(int hp); // 체력
 	void addExperience(int amount); // 경험치
-	
-	
-	
+
 	void levelUp();
-	void addExperience(int amount);
 	void useItem(); // 아이템 사용
 	void displayStatus(); // 캐릭터 스테이터스 창
 

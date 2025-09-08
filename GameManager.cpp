@@ -9,10 +9,6 @@
 
 using namespace std;
 
-Player player;
-Inventory inventory;
-Shop shop;
-
 void GameManager::GameStart()
 { 
 	string nickname;
@@ -35,7 +31,6 @@ void GameManager::GameStart()
 void GameManager::selectAction() 
 {
 	int selectaction;
-	int selectPotion;
 	cout << "==============원하시는 선택지를 골라주세요==============\n" << endl;
 	cout << "전투 - 1.\n 상점 - 2.\n 가방 확인 - 3.\n 스텟 관리 - 4.\n" << endl;
 	cin >> selectaction;
@@ -56,7 +51,7 @@ void GameManager::selectAction()
 		system("cls");
 		cout << "==============원하시는 선택지를 골라주세요==============\n" << endl;
 		cout << "체력 포션 - 1.\n 공격력 증가 포션 - 2.\n 경험치 포션 - 3.\n 나가기 - 0.\n" << endl;
-		player.useItem(selectPotion);
+		player.useItem();
 	default:
 		break;
 	}
@@ -94,8 +89,8 @@ void GameManager::displayInventory()
 void GameManager::generateMonster()
 {
 	system("cls");
-	nearbyMonster = unique_ptr<Monster>();
-	cout << "몬스터 : " << nearbyMonster->getName() << "가(이) 나타났습니다!" << endl;
+	//nearbyMonster = unique_ptr<Monster>();
+	//cout << "몬스터 : " << nearbyMonster->getName() << "가(이) 나타났습니다!" << endl;
 }
 
 void GameManager::battle()

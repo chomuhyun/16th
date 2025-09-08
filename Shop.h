@@ -14,7 +14,7 @@ public:
 
 	void buyitem() {}; //아이템 구매
 	void sellitem() {}; //아이템 판매
-	void displayitem() {}; //아이템 출력
+	void displayitem() {}; //아이템 출력  
 private:
 	vector<Item> ShopList;
 

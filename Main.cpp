@@ -3,9 +3,11 @@
 #include "Monster.h"
 #include "Inventory.h"
 #include "GameManager.h"
-Player player;
-GameManager gamemanager;
+
+GameManager g;
 int main()
 {
-	gamemanager.GameStart();
+
+	g.GameStart();
+	//gamemanager.GameStart();
 }

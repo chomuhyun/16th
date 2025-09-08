@@ -4,6 +4,7 @@
 using namespace std;
 
 class Monster {
+public:
     string name;
     int hp; // 보기 쉽게 앞에다가 m을 붙여서 m.hp  m.atk 로 하는게 좋으련지....
     int atk;

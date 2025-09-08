@@ -8,21 +8,29 @@ class Player
 {
 public: // 멤버함수
 
-	Player(string name) {}
+	Player player(string name) {} // 생성자
 
-	int getGold() {
+	//getter
+	int getGold() {	return gold;} //골드
+	int getHealth() { return health; } //체력
+	int getExperience() { return experience; } // 경험치
+	string getCharacterName() { return name; } // 캐릭터 닉네임 
+	vector<Item*>& Getinv() { return inv; } // 인벤토리 접근
 
-		return gold;
-	}
-
+	//setter
+	void setGold(int coin); // 골드
+	void setHealth(int hp); // 체력
+	void setExperience(int exp); // 경험치
+	
+	
 	void levelUp();
 	void addExperience(int amount);
-	void useItem(int index); // 아이템 사용
-
+	void useItem(int Index); // 아이템 사용
 	void displayStatus(); // 캐릭터 스테이터스 창
 
 private: // 멤버변수
 
+	vector<Item*>inv;
 	//레벨 공격력 초기체력 고정
 	string name;
 	int* P_level;
@@ -35,7 +43,6 @@ private: // 멤버변수
 	int* P_attack;
 	int gold;
 	int experience;
-	
 
-	
+
 };

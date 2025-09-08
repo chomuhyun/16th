@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
+#include "Inventory.h"
 #include "Player.h"
 
-using namespace std;
 
 //필요한거
 // 닉네임 골드 레벨 체력 MAX체력 공격 경험치 인벤토리
@@ -15,15 +15,15 @@ void Player::levelUp() // 레벨업시 체력 풀 회복
 	if (level == 10) { return; } //만약 레벨이 10이면 돌아간다
 	else {
 		level += 1;
-		cout << "레벨업! 현재 레벨:" << level << endl;
+		std::cout << "레벨업! 현재 레벨:" << level << std::endl;
 	}
 }
-void Player::addExperience(int amount)
+void Player::addExperience(int amount) // 경험치 이월가능하게 구현했습니다!
 {
-	experience += amount;
-	if (experience >= 100)
+	experience += amount; //현재 경험치에 새로 얻은 경험치(amount) 더해줌
+	if (experience >= 100) 
 		experience -= 100;
 	    levelUp();
-		cout << amount << "경험치를 획득했습니다! 현재 경험치:" << experience << endl;
+		std::cout << amount << "경험치를 획득했습니다! 현재 경험치:" << experience << std::endl;
 }
 

@@ -4,6 +4,8 @@
 class GameManager
 {
 public:
+	void GameStart() {}
+
 	void selectAction() {}
 
 	void visitShop() {}

@@ -1,26 +1,62 @@
 #include <iostream>
 #include "Monster.h"
 #include "Player.h"
-#include "Shop.h" //헤더가 필요한 상황
+#include "Shop.h" 
 #include <memory>
 #include <vector>
 #include "GameManager.h"
+#include "Inventory.h"
+
 using namespace std;
+
+Player player;
+Inventory inventory;
+Shop shop;
+
+void GameManager::GameStart()
+{ 
+	string nickname;
+	player.getCharacterName() = nickname;
+	cout << "=======================================\n" << endl;
+	cout << "16조 전사의 모험에 오신것을 환영합니다!\n" << endl;
+	cout << "=======================================\n" << endl;
+	cout << "\n" << endl;
+	cout << "케릭터 생성을 위해 이름을 입력해주세요!\n" << endl;
+	cin >> nickname;
+	cout << "\n" << endl;
+	cout << "케릭터 이름 : " << player.getCharacterName() <<"\n" << endl;
+	cout << "=======================================\n" << endl;
+	cout << "환영합니다!" << player.getCharacterName() << "님!\n 원하는 선택지를 고르세요 !" << endl;
+	cout << "=======================================\n" << endl;
+	system("cls");
+	selectAction();
+}
    
 void GameManager::selectAction() 
 {
 	int selectaction;
-	cout << "==============Battle or Shop================" << endl;
-	cout << "전투 - 1.\n 상점 - 2.\n " << endl;
+	int selectPotion;
+	cout << "==============원하시는 선택지를 골라주세요==============\n" << endl;
+	cout << "전투 - 1.\n 상점 - 2.\n 가방 확인 - 3.\n 스텟 관리 - 4.\n" << endl;
 	cin >> selectaction;
 	switch (selectaction)
 	{
 	case 1:
+		system("cls");
 		battle();
 		break;
 	case 2:
+		system("cls");
 		visitShop();
 		break;
+	case 3:
+		system("cls");
+		displayInventory();
+	case 4:
+		system("cls");
+		cout << "==============원하시는 선택지를 골라주세요==============\n" << endl;
+		cout << "체력 포션 - 1.\n 공격력 증가 포션 - 2.\n 경험치 포션 - 3.\n 나가기 - 0.\n" << endl;
+		player.useItem(selectPotion);
 	default:
 		break;
 	}
@@ -28,45 +64,43 @@ void GameManager::selectAction()
 
 void GameManager::visitShop()
 {
-	cout << "상점에 입장 하시겠습니까? Y/1 N/2\n " << endl;
-	// 상점에 입장할것인지 입력 받은 후에 상점페이지로 넘어갈수 있는 함수필요
-	// 만약 상점에 입장하는 입력값을 받았다면 함수호출
-	// 그렇지 않다면 다시 전투를 할지 상점을 갈지 선택하는 함수 필요
+	system("cls");
+	cout << "==========상점에 오신것을 환영합니다!==========\n" << endl;
+	shop.displayitem();
+	//상점으로 넘어왔고 물품리스트 를 불러오고 이름과 가격을 출력해야함
+	//출력창에서 구매, 판매 로 넘어가야 되고 구매 판매기능이 끝나면 인벤토리 확인 및 상점 나가기가 되어야함
 }
 
 void GameManager::displayInventory()
 {
+	cout << "============Inventory=============\n" << endl;
+	player.Getinv();
+	cout << "============Inventory=============\n" << endl;
+	cout << "\n" << endl;
+	cout << "나가기 - 3.\n" << endl;
 	int displayinv; //키보드 i 를 눌럿을때로 하고 싶지만 일단 숫자로...
 	cin >> displayinv;
-	switch (displayinv)
+	if (displayinv == 3)
 	{
-	case 5:
-		cout << "============Inventory=============\n" << endl;
-		cout << /*현재 플레이어가 가지고 있는 아이템 배열을 불러와야댐*/ << endl;
-		cout << "============Inventory=============\n" << endl;
-		break;
-	case 6:
+		system("cls");
 		selectAction();
-	default:
-		break;
 	}
 
 	//인벤토리창을 닫는 기능이 필요함 창을 닫으면 전투를 할지 상점을 갈지 선택할수있어야함 
-
 	// i 버튼을 누르면 인벤토리 창이 뜰수 있게해야하는데 인벤토리 배열과,
 	// 그 아이템을 나열하는 출력창이 필요함
 }
 
 void GameManager::generateMonster()
 {
-	
+	system("cls");
 	nearbyMonster = unique_ptr<Monster>();
 	cout << "몬스터 : " << nearbyMonster->getName() << "가(이) 나타났습니다!" << endl;
 }
 
 void GameManager::battle()
 {
-
+	system("cls");
 }
 
 void GameManager::generateBossMonster()

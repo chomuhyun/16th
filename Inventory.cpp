@@ -2,49 +2,94 @@
 #include "Player.h"
 #include <iostream>
 
-AttackBoost::AttackBoost(std::string n, int increase)
+AttackBoost::AttackBoost(std::string n, int increase) // 공격력 부스트(이름, 증가량)
 	:name(n), attackIncrease(increase) {
 }
 
-std::string AttackBoost::getName() {
+std::string AttackBoost::getName() { // 공격력 부스트 이름 반환 함수
 	return name;
 }
 
-void AttackBoost::use(Player& player) {
-	player.attack += attackIncrease; //player 정의되어야함
+void AttackBoost::use(Player& player) { // 공격력 부스트 사용 후 공격력 증가 함수
+	int currentAttack = player.getAttack();          // getter로 읽고
+	player.setAttack(currentAttack + attackIncrease); // setter로 공격력 증가
 	std::cout << name << " 사용! 공격력이 " << attackIncrease << "만큼 증가하였습니다. \n";
 
 }
 
-HealthPotion::HealthPotion(std::string n, int restore)
+void AttackBoost::gainItem() // 공격력 부스트 개수 +1
+{
+	numberofAttackBoost++;
+}
+
+void AttackBoost::lossItem() // 공격력 부스트 개수 -1
+{
+	if (numberofAttackBoost > 0) {
+		numberofAttackBoost--;
+	}
+	else {
+		cout << "공격력 부스트가 없습니다!" << endl;
+	}
+}
+
+HealthPotion::HealthPotion(std::string n, int restore) // 회복 포션(이름, 회복량)
 	:name(n), healthRestore(restore) {
 }
 
-std::string HealthPotion::getName() {
+std::string HealthPotion::getName() {// 회복 포션 이름 반환 함수
 	return name;
 }
 
-void HealthPotion::use(Player& player) {
-	player.health += healthRestore;
+void HealthPotion::use(Player& player) { // 회복 포션 사용 후 체력 증가 함수
+	int currentHealth = player.getHealth();          // getter로 읽고
+	player.setHealth(currentHealth + healthRestore); // setter로 체력 증가
 	std::cout << name << " 사용! 체력이 " << healthRestore << "만큼 회복되었습니다. \n";
 }
 
-ExperienceBoost::ExperienceBoost(std::string n, int Increase)
+void HealthPotion::gainItem() // 체력 포션 개수 +1
+{
+	numberofHealthPotion++;
+}
+
+void HealthPotion::lossItem() // 체력 포션 개수 -1
+{
+	if (numberofHealthPotion > 0) {
+		numberofHealthPotion--;
+	}
+	else {
+		cout << "체력 포션이 없습니다!" << endl;
+	}
+}
+
+ExperienceBoost::ExperienceBoost(std::string n, int Increase) // 경험치 부스트(이름, 증가량)
 	:name(n), experienceIncrease(Increase) {
 }
 
-std::string ExperienceBoost::getName() {
+std::string ExperienceBoost::getName() { // 경험치 부스트 이름 반환 함수
 	return name;
 }
 
-void ExperienceBoost::use(Player& player) {
-	player.experience += experienceIncrease;
+void ExperienceBoost::use(Player& player) { // 경험치 부스트 사용 후 경험치 증가 함수
+	int currentExperience = player.getExperience();           // getter로 읽고
+	player.setHealth(currentExperience + experienceIncrease); // setter로 경험치 증가
 	std::cout << name << " 사용! 경험치 " << experienceIncrease << "만큼 획득하었습니다." << "\n";
 
 }
-void gainItem//아이템 개수++
-
-// 아이템 현재 갯수 및 골드 출력
+void ExperienceBoost::gainItem()//경험치 부스트 개수 +1
+{
+	numberofExperienceBoost++; 
+}
+void ExperienceBoost::lossItem()//경험치 부스트 개수 -1
+{
+	if (numberofExperienceBoost > 0) {
+		numberofExperienceBoost--;
+	}
+	else {
+		cout << "경험치 부스트가 없습니다!" << endl;
+	}
+}
+//***** 아이템 현재 갯수 및 골드 출력
 void PrintCurrentItemAndGold() {
-	cout << "[이름: " << name_ << ", 총 Gold: " << price_ /* 플레이어 헤더파일 가져오기*/ << "G]" << endl;
+	cout << "[이름: " <<  " 메인함수(getter) 가져오기" <<
+		", 총 Gold: " << " 플레이어 (getter) 가져오기" << "G]" << endl;
 }

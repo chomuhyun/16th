@@ -73,7 +73,7 @@ std::string ExperienceBoost::getName() { // 경험치 부스트 이름 반환 함수
 
 void ExperienceBoost::use(Player& player) { // 경험치 부스트 사용 후 경험치 증가 함수
 	int currentExperience = player.getExperience();           // getter로 읽고
-	player.setHealth(currentExperience + experienceIncrease); // setter로 경험치 증가
+	player.addExperience(currentExperience + experienceIncrease); // setter로 경험치 증가
 	std::cout << name << " 사용! 경험치 " << experienceIncrease << "만큼 획득하었습니다." << "\n";
 
 }
@@ -92,7 +92,11 @@ int ExperienceBoost::lossItem()//경험치 부스트 개수 -1
 	}
 }
 //***** 아이템 현재 갯수 및 골드 출력
-void PrintCurrentItemAndGold() {
-	std::cout << "[이름: " <<  " 메인함수(getter) 가져오기" <<
-		", 총 Gold: " << " 플레이어 (getter) 가져오기" << "G]" << std::endl;
+void Inventory::PrintCurrentItemAndGold(Player& player, HealthPotion& hp, AttackBoost& ab, ExperienceBoost& exp) {
+	std::cout << "[체력 포션: " << hp.getCount() << "개, 공격력 증가 포션: " << ab.getCount() <<"개, 경험치 증가 포션: "<< exp.getCount() <<
+		"개, 현재 Gold: " << player.getGold() << "G]" << std::endl;
 }
+/* 
+Inventory inv;
+inv.PrintCurrentItemAndGold(player, hp, ab, exp);
+*/

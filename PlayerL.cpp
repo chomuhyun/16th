@@ -5,16 +5,14 @@
 #include "Player.h"
 #include "Monster.h"
 #include "Inventory.h"
-
-#include <cstdlib> //rand 사용
-#include <ctime> // time 사용
+#include "GameManager.h"
 
 
 using namespace std;
 
 
-vector<Item*>inv; //추상클래스는 포인터 사용해야함 (player.h에 변경 요청)
-
+//vector<Item*>inv; //추상클래스는 포인터 사용해야함 (player.h에 변경 요청)
+GameManager gamemanager;
 
 //필요한거
 // 닉네임 골드 레벨 체력 MAX체력 공격 경험치 인벤토리
@@ -45,40 +43,27 @@ void Player::displayStatus()
 
 }
 
-// 전투
-// bool battle = false - 기본 전투 승리여부 (상의 해야함)
-// 전투에서 승리했다면 골드를 얻고 확률적으로 아이템을 습득함 - 효정,다훈,병관
-
-int Player::battle(bool battle) //일반 몬스터전투 승리시 경험치 + 50 / 골드 10~20 전투..
+//Setter 함수
+void Player::setGold(int coin)
 {
-	cout << "전투에서 승리했습니다 ! " << endl;
-	cout << " * 획득 보상 * " << endl;
-	cout << name << "가" << experience + 50 << "EXP와" << gold + 12 << "골드를 획득 했습니다.";
-	cout << "현재 EXP : " << experience << "/100, 골드 : " << gold << endl;
+	gold = coin;
+}
 	
-	
+
+void Player::setHealth(int hp)
+{
+	health = hp;
 }
 
 
-bool random = false; // player.h 추가 변수 랜덤 함수 사용시 필요
-
-//srand(static_cast<unsigned int>(time(0)));  -> 메인 cpp에 추가 해야함
-void Player::Random(int random) // 입력 받을 값 (확률)
+void Player::setExperience(int exp)
 {
-	int randomValue = rand() % 100 + 1;
-	if (randomValue <= random)
-	{
-		r = true;
-	}
-	else
-	{
-		r = false;
-	}
+	experience = exp;
 }
 
 
-//아이템 사용 번호 선택 1.HP
-void Player::useItem() //입력받은값에 클래스를 가지고온확률이 큼
+//아이템 사용 번호 선택 1.HP 2.공격력강화 3. 경험치 강화
+void Player::useItem(int Index) //입력받은값에 클래스를 가지고온확률이 큼
 {
 	int index;
 	cin >> index;
@@ -98,53 +83,48 @@ void Player::useItem() //입력받은값에 클래스를 가지고온확률이 큼
 		HealthPotion * hpPotion = dynamic_cast<HealthPotion*>(inv[index]);
 		if (hpPotion) {
 			hpPotion->use(*this);       // HP 회복
+			hpPotion->lossItem(); // 아이템 수량 -1 
 			cout << hpPotion->getName() << " 사용 완료!\n";
 			delete inv[index];          // 메모리 해제
 			inv.erase(inv.begin() + index); // 벡터에서 제거
-			// 접근가능한 함수 불러와서 -= 1;
+			// 접근가능한 함수 불러와서 -= 1;	
+		}
 		break;
-
 	case 2:
 		AttackBoost * attackboost = dynamic_cast<AttackBoost*>(inv[index]);
 		if (attackboost) {
-			attackboost->use(*this);       // HP 회복
+			attackboost->use(*this);       // 공격력 강화
+			attackboost->lossItem(); // 아이템 수량 -1 
 			cout << attackboost->getName() << " 사용 완료!\n";
 			delete inv[index];          // 메모리 해제
 			inv.erase(inv.begin() + index); // 벡터에서 제거
 			// 접근가능한 함수 불러와서 -= 1;
-
+		}
 		break;
-
+		
 	case 3:
 		ExperienceBoost * experienceboost = dynamic_cast<ExperienceBoost*>(inv[index]);
 		if (experienceboost) {
-			experienceboost->use(*this);       // HP 회복
+			experienceboost->use(*this);       // 경험치 강화
+			experienceboost->lossItem(); // 아이템 수량 -1 
 			cout << experienceboost->getName() << " 사용 완료!\n";
 			delete inv[index];          // 메모리 해제
 			inv.erase(inv.begin() + index); // 벡터에서 제거
-			// 접근가능한 함수 불러와서 -= 1;
+		}
+		break;
+
+	case 0:
+		gamemanager.selectAction();
 		break;
 
 	default:
 		cout << "잘못된 입력입니다. 숫자를 다시 입력해주세요 " << endl;
-			
+
 		break;
+	
 	}
 }
 
-	//아이템 갯수 계산식 필요함 
-
-
-// 캐릭터가 아이템을 사용했을때 아이템이 부여하는 속성에 따라 스텟이 변해야함 - 병관,효정	
-void Player::ChangeStatus(const Item& item)
-{
-	if (health <= MaxHealth * 0.4) // 현재 체력이 40% 이하일때 50% 확률로 아이템 사용
-	{
-		Random(50) //useItem() 함수 호출 
-	}
-
-	
-		
 
 // 인벤토리 내의 아이템을 사용하면 그에 따른 스탯이 증가해야함 - 효정
 

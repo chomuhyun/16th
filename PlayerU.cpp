@@ -15,7 +15,7 @@ void Player::levelUp() // 레벨업시 체력 풀 회복
 	if (level == 10) { return; } //만약 레벨이 10이면 돌아간다
 	else {
 		level += 1;
-		
+		cout << "레벨업! 현재 레벨:" << level << endl;
 	}
 }
 void Player::addExperience(int amount)
@@ -24,4 +24,6 @@ void Player::addExperience(int amount)
 	if (experience >= 100)
 		experience -= 100;
 	    levelUp();
+		cout << amount << "경험치를 획득했습니다! 현재 경험치:" << experience << endl;
 }
+

@@ -84,7 +84,7 @@ int ExperienceBoost::gainItem()//경험치 부스트 개수 +1
 int ExperienceBoost::lossItem()//경험치 부스트 개수 -1
 {
 	if (numberofExperienceBoost > 0) {
-		numberofExperienceBoost--;
+		return numberofExperienceBoost--;
 	}
 	else {
 		std::cout << "경험치 부스트가 없습니다!" << endl;

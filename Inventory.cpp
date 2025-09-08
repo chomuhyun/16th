@@ -2,15 +2,15 @@
 #include "Player.h"
 #include <iostream>
 
-AttackBoost::AttackBoost(std::string n, int increase)
+AttackBoost::AttackBoost(std::string n, int increase) // 공격력 부스트(이름, 증가량)
 	:name(n), attackIncrease(increase) {
 }
 
-std::string AttackBoost::getName() {
+std::string AttackBoost::getName() { // 공격력 부스트 이름 반환 함수
 	return name;
 }
 
-void AttackBoost::use(Player& player) {
+void AttackBoost::use(Player& player) { // 공격력 부스트 사용 후 공격력 증가 함수
 	int currentAttack = player.getAttack();          // getter로 읽고
 	player.setAttack(currentAttack + attackIncrease); // setter로 공격력 증가
 	std::cout << name << " 사용! 공격력이 " << attackIncrease << "만큼 증가하였습니다. \n";
@@ -32,15 +32,15 @@ void AttackBoost::lossItem() // 공격력 부스트 개수 -1
 	}
 }
 
-HealthPotion::HealthPotion(std::string n, int restore)
+HealthPotion::HealthPotion(std::string n, int restore) // 회복 포션(이름, 회복량)
 	:name(n), healthRestore(restore) {
 }
 
-std::string HealthPotion::getName() {
+std::string HealthPotion::getName() {// 회복 포션 이름 반환 함수
 	return name;
 }
 
-void HealthPotion::use(Player& player) {
+void HealthPotion::use(Player& player) { // 회복 포션 사용 후 체력 증가 함수
 	int currentHealth = player.getHealth();          // getter로 읽고
 	player.setHealth(currentHealth + healthRestore); // setter로 체력 증가
 	std::cout << name << " 사용! 체력이 " << healthRestore << "만큼 회복되었습니다. \n";
@@ -61,15 +61,15 @@ void HealthPotion::lossItem() // 체력 포션 개수 -1
 	}
 }
 
-ExperienceBoost::ExperienceBoost(std::string n, int Increase)
+ExperienceBoost::ExperienceBoost(std::string n, int Increase) // 경험치 부스트(이름, 증가량)
 	:name(n), experienceIncrease(Increase) {
 }
 
-std::string ExperienceBoost::getName() {
+std::string ExperienceBoost::getName() { // 경험치 부스트 이름 반환 함수
 	return name;
 }
 
-void ExperienceBoost::use(Player& player) {
+void ExperienceBoost::use(Player& player) { // 경험치 부스트 사용 후 경험치 증가 함수
 	int currentExperience = player.getExperience();           // getter로 읽고
 	player.setHealth(currentExperience + experienceIncrease); // setter로 경험치 증가
 	std::cout << name << " 사용! 경험치 " << experienceIncrease << "만큼 획득하었습니다." << "\n";

@@ -9,7 +9,6 @@
 
 using namespace std;
 
-GameManager gamemanager;
 
 Player::Player(std::string name)
 	: name(name), level(1), health(200), attack(30), experience(0), inv()

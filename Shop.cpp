@@ -57,7 +57,6 @@ Inventory inventory;
         int Sell > 0; // 아이템을 0개 넘게 팔기는 불가능.
         int g;
         g = player.getGold();
-        g += (shopitemprice * 0.6);
         vector<Item*>inv;
         inv.erase(getName);
         cout << "몇개를 판매하시겠습니까?" << endl;

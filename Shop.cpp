@@ -30,13 +30,9 @@ using namespace std;
 5. 플레이어 인벤토리에 구매한 물건이 들어감
 */
 
-Item* item = new HealthPotion();
+
 Player player;
 Inventory inventory;
-
-class Shop
-{
-public:
 
     void buyitem()  //플레이어가 가지고있는 인벤토리 배열에 아이템 추가 , 플레이어가 가지고있는 gold라는 변수에서 itemprice라는 변수를 빼준다
     {
@@ -44,16 +40,15 @@ public:
         int Buy = 0;
         int g;
         g = player.getGold();
-        g -= ItemPrice;
-        vector<Item*>inv;                   // 캐릭터 인벤토리 배열 없음.
-        inv.push_back(itemname_);
+        g -= shopitemprice;
+        inventory.               
+        inv.push_back(shopitemname);
         cout << "몇개를 구매하시겠습니까?" << endl;
         cin >> Buy;
         for (int Buy; Buy <= MXI;)
         {
-            g -= ItemPrice * Buy;
+            g -= shopitemprice* Buy;
         }
-        
     }
 
     void sellitem()
@@ -71,7 +66,7 @@ public:
         {
             if (int MNI > 0)
             {
-                getGold += int(ItemPrice * Sell) * 0.6
+                getGold += int(shopitemprice * Sell) * 0.6
             }
         }
 
@@ -79,14 +74,10 @@ public:
 
     void displayitems()
     {
-
         vector<inv*> ShopList{ new HealthPotion( name , 10 ), new AttackBoost( name , 5 ), new Shop};
-        pitems_
         cout << "= = = 상점 물품 목록 = = =" << endl;
-        cout << "[이름 : " << (itemname_) << ", 가격 " << (ItemPrice) << "G]" << endl;
+        cout << "[이름 : " << (itemname_) << ", 가격 " << (shopitemprice) << "G]" << endl;
     }
-
-};
 
 
 

@@ -28,7 +28,7 @@ void AttackBoost::lossItem() // 공격력 부스트 개수 -1
 		numberofAttackBoost--;
 	}
 	else {
-		cout << "공격력 부스트가 없습니다!" << endl;
+		std::cout << "공격력 부스트가 없습니다!" << endl;
 	}
 }
 
@@ -57,7 +57,7 @@ void HealthPotion::lossItem() // 체력 포션 개수 -1
 		numberofHealthPotion--;
 	}
 	else {
-		cout << "체력 포션이 없습니다!" << endl;
+		std::cout << "체력 포션이 없습니다!" << endl;
 	}
 }
 
@@ -85,7 +85,7 @@ void ExperienceBoost::lossItem()//경험치 부스트 개수 -1
 		numberofExperienceBoost--;
 	}
 	else {
-		cout << "경험치 부스트가 없습니다!" << endl;
+		std::cout << "경험치 부스트가 없습니다!" << endl;
 	}
 }
 //***** 아이템 현재 갯수 및 골드 출력

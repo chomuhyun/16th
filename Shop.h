@@ -8,5 +8,14 @@ using namespace std;
 
 class Shop
 {
-	vector<item> ShopList
+public:
+	string shopitemname;
+	int shopitemprice;
+
+	void buyitem() {};
+	void sellitem() {};
+	void displayitem() {};
+private:
+	vector<Item> ShopList;
+
 };

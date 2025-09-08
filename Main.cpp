@@ -7,7 +7,7 @@
 GameManager g;
 int main()
 {
-
+ 
 	g.GameStart();
 	//gamemanager.GameStart();
 }

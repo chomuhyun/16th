@@ -11,7 +11,8 @@ std::string AttackBoost::getName() {
 }
 
 void AttackBoost::use(Player& player) {
-	player.attack += attackIncrease; //player 정의되어야함
+	int currentAttack = player.getAttack();          // getter로 읽고
+	player.setAttack(currentAttack + attackIncrease); // setter로 공격력 증가
 	std::cout << name << " 사용! 공격력이 " << attackIncrease << "만큼 증가하였습니다. \n";
 
 }
@@ -40,7 +41,8 @@ std::string HealthPotion::getName() {
 }
 
 void HealthPotion::use(Player& player) {
-	player.health += healthRestore;
+	int currentHealth = player.getHealth();          // getter로 읽고
+	player.setHealth(currentHealth + healthRestore); // setter로 체력 증가
 	std::cout << name << " 사용! 체력이 " << healthRestore << "만큼 회복되었습니다. \n";
 }
 
@@ -68,7 +70,8 @@ std::string ExperienceBoost::getName() {
 }
 
 void ExperienceBoost::use(Player& player) {
-	player.experience += experienceIncrease;
+	int currentExperience = player.getExperience();           // getter로 읽고
+	player.setHealth(currentExperience + experienceIncrease); // setter로 경험치 증가
 	std::cout << name << " 사용! 경험치 " << experienceIncrease << "만큼 획득하었습니다." << "\n";
 
 }

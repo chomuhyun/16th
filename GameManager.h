@@ -9,6 +9,7 @@ public:
 	GameManager() {}
 	~GameManager() {}
 
+	string nickname;
 	void GameStart();
 
 	void selectAction();

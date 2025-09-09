@@ -12,6 +12,7 @@ public:
 	virtual void use(Player& player) = 0; //순수 가상함수, 포션 사용 함수 (자식클래스에서 구현)
 	virtual int gainItem() = 0; // 아이템 갯수 +1 (상점 구입, 전투중 드랍)
 	virtual int lossItem() = 0; // 아이템 갯수 -1(상점 판매, 아이템 사용)
+	virtual int getCount() = 0; // 현재 아이템 보유 갯수 반환
 };
 
 class HealthPotion : public Item {
@@ -25,6 +26,7 @@ public:
 	void use(Player& player) override; //부모클래스(포션 사용) 받아와 구현
 	int gainItem() override; //부모클래스(포션 개수 증가) 받아와 구현
 	int lossItem() override; //부모클래스(포션 개수 감소) 받아와 구현
+	int getCount() override { return numberofHealthPotion; }
 };
 
 class AttackBoost : public Item {
@@ -38,6 +40,7 @@ public:
 	void use(Player& player) override; //부모클래스(포션 사용) 받아와 구현
 	int gainItem() override; //부모클래스(포션 개수 증가) 받아와 구현
 	int lossItem() override; //부모클래스(포션 개수 감소) 받아와 구현
+	int getCount() override { return numberofAttackBoost; }
 };
 
 class ExperienceBoost : public Item {
@@ -51,15 +54,19 @@ public:
 	void use(Player& player) override; //부모클래스(포션 사용) 받아와 구현
 	int gainItem() override; //부모클래스(포션 개수 증가) 받아와 구현
 	int lossItem() override; //부모클래스(포션 개수 감소) 받아와 구현
+	int getCount() override { return numberofExperienceBoost; }
 };
 
 // 인벤토리 클래스 추가하기
 class Inventory
 {
-	Inventory();
-	~Inventory() {};
+public:
+	Inventory() {}
+	~Inventory() {}
+
+	void PrintCurrentItemAndGold(Player& player, HealthPotion& hp, AttackBoost& ab, ExperienceBoost& exp); // 현재 아이템 개수 및 골드 출력 선언
 };
-void PrintCurrentItemAndGold(); // 현재 아이템 개수 및 골드 출력 선언
+
 
 //게임 자체의 시뮬레이션이 돌아가야함
 //* 전투에서 승리했다면 골드를 얻고 확률적으로 아이템을 습득함 - 수정,효정,다훈,병관

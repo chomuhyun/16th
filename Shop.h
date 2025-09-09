@@ -10,8 +10,14 @@ using namespace std;
 class Shop
 {
 public:
+<<<<<<< HEAD
+	Shop();
+	~Shop();
+	
+=======
 	Shop() {}
 	~Shop() {}
+>>>>>>> Dev
 	string shopitemname; //아이템 이름
 	int HPpotionprice = 10;
 	int ATKboostprice = 20;
@@ -24,4 +30,10 @@ public:
 private:
 	vector<Item> ShopList;
 	Player player;
+<<<<<<< HEAD
+	HealthPotion h();
+	AttackBoost a();
+	ExperienceBoost e();
+=======
+>>>>>>> Dev
 };

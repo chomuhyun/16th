@@ -13,6 +13,7 @@ using namespace std;
 Player::Player(std::string name)
 	: name(name), level(1), health(200), attack(30), experience(0), inv()
 {
+	inv.push_back(new HealthPotion("빨간 포션", 50));
 }
 
 void Player::displayStatus()
@@ -67,51 +68,50 @@ void Player::setHealth(int hp)
 }
 
 
-
-//아이템 사용 번호 선택 1.HP 2.공격력강화 3. 경험치 강화
-void Player::useItem()
+void Player::setHealth(int hp)
 {
-	int index;
-	std::cin >> index;
-
-	if (index < 0 || index >= inv.size())  // 인덱스 값이 0보다 작거나 인덱스 크기보다 큰경우 함수 종료
-	{
-		std::cout << "잘못된 인덱스 입니다." << std::endl;
-		return;
-	}
-
-	Item* item = inv[index];
-	// vector<Item*>inv  안에있는 객체를 가리키는 포인터 선언
-	//dynamic_cast로 item이 내가 원하는 자식 클래스가 맞는지 확인,아니라면 nullptr
-
-	if (HealthPotion* hpPotion = dynamic_cast<HealthPotion*>(item))
-	{
-		hpPotion->use(*this);
-		hpPotion->lossItem();
-		std::cout << hpPotion->getName() << "사용!" << std::endl;
-	}
-	else if (AttackBoost* atkboost = dynamic_cast<AttackBoost*>(item))
-	{
-		atkboost->use(*this);
-		atkboost->lossItem();
-		std::cout << atkboost->getName() << "사용!" << std::endl;
-	}
-	else if (ExperienceBoost* expboost = dynamic_cast<ExperienceBoost*>(item))
-	{
-		expboost->use(*this);
-		expboost->lossItem();
-		std::cout << expboost->getName() << "사용!" << std::endl;
-	}
-	else
-	{
-		std::cout << "사용할수 있는 아이템이 없습니다." << std::endl;
-		return;
-	}
-
-	//메모리 처리 (공통) 벡터 제거 + 메모리 해제
-	delete inv[index];
-	inv.erase(inv.begin() + (index - 1)); //인덱스는 0 번부터 시작
-
+    health = hp;
 }
 
 
+void Player::useItem() {
+
+    int input;
+    std::cin >> input;
+
+    Item* selectedItem = nullptr;
+    int index = 1;
+
+    auto& inventory = Getinv();
+
+    for (int i = 0; i < inventory.size(); i++)
+    {
+        if (input == 1 && dynamic_cast<HealthPotion*>(inventory[i])) {
+            selectedItem = inventory[i];
+            index = i;
+            break;
+        }
+        else if (input == 2 && dynamic_cast<AttackBoost*>(inventory[i])) {
+            selectedItem = inventory[i];
+            index = i;
+            break;
+        }
+        else if (input == 3 && dynamic_cast<ExperienceBoost*>(inventory[i])) {
+            selectedItem = inventory[i];
+            index = i;
+            break;
+        }
+
+        if (inventory.empty()) {
+            std::cout << "해당 아이템이 없습니다." << std::endl;
+            return;
+        }
+    }
+
+
+    selectedItem->use(*this);
+    selectedItem->lossItem();
+
+    delete selectedItem;
+    inventory.erase(inventory.begin() + index);
+}

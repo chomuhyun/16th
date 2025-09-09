@@ -12,9 +12,6 @@ class Item;
 
 Player player;
 GameManager gamemanager;
-HealthPotion h();
-AttackBoost a();
-ExperienceBoost e();
 
 int Shopmenu;
 
@@ -68,6 +65,7 @@ void Shop::buyitem()
         AttackBoost a("공격력 증가 포션", 10, 1, 20);
         std::cout << "공격력 강화를 선택하셨습니다. 몇개 구매하시겠습니까?" << std::endl;
         std::cin >> itembuy;
+        std::cout << player.getGold() << std::endl;
         if (player.getGold() < 20)
         {
             std::cout << "골드가 부족합니다." << std::endl;
@@ -78,7 +76,7 @@ void Shop::buyitem()
         {
             player.setGold(player.getGold() - a.getPrice() * itembuy);
             std::cout << player.getGold() << std::endl;
-            player.Getinv().push_back(new AttackBoost("체력 포션", 50, 1, 10));
+            player.Getinv().push_back(new AttackBoost("공격력 증가 포션", 10, 1, 20));
         }
         break;   
     }
@@ -88,6 +86,7 @@ void Shop::buyitem()
         ExperienceBoost e("경험치 증가 포션", 20, 1, 30);
         std::cout << "경험치 강화를 선택하셨습니다. 몇개 구매하시겠습니까?" << std::endl;
         std::cin >> itembuy;
+        std::cout << player.getGold() << std::endl;
         if (player.getGold() < 30)
         {
             std::cout << "골드가 부족합니다." << std::endl;
@@ -98,7 +97,7 @@ void Shop::buyitem()
         {
             player.setGold(player.getGold() - e.getPrice() * itembuy);
             std::cout << player.getGold() << std::endl;
-            player.Getinv().push_back(new ExperienceBoost("체력 포션", 50, 1, 10));
+            player.Getinv().push_back(new ExperienceBoost("경험치 증가 포션", 20, 1, 30));
         }
         break;
     }

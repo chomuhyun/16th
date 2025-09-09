@@ -24,8 +24,5 @@ public:
 	void displayitem(); //아이템 출력  
 private:
 	vector<Item*> ShopList;
-	Player player;
-	HealthPotion h();
-	AttackBoost a();
-	ExperienceBoost e();
+	Player& player;
 };

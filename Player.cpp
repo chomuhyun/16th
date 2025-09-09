@@ -20,13 +20,6 @@ Player::Player(std::string name)
 }
 
 
-Player::~Player() // 소멸자 , 메모리 비우기 cpp
-{
-    for (Item* item : inv)
-    {
-        delete item;
-    }
-}
 
 /*std::string Player::InputName(string Name)
 {
@@ -123,10 +116,14 @@ void Player::useItem()
 
     for (int i = 0; i < inventory.size(); i++)
     {
-        if (input == 1 && dynamic_cast<HealthPotion*>(inventory[i])) {
-            selectedItem = inventory[i];
-            index = i;
-            break;
+        if(health <= MaxHealth)
+        { 
+
+            if (input == 1 && dynamic_cast<HealthPotion*>(inventory[i])) {
+                selectedItem = inventory[i];
+                index = i;
+                break;
+            }          
         }
         else if (input == 2 && dynamic_cast<AttackBoost*>(inventory[i])) {
             selectedItem = inventory[i];
@@ -138,17 +135,20 @@ void Player::useItem()
             index = i;
             break;
         }
-
-        if (selectedItem == nullptr) {
-            std::cout << "해당 아이템이 없습니다." << std::endl;
+        else if (input == 0) {
             return;
         }
     }
-
+    if (selectedItem == nullptr) {
+        std::cout << "해당 아이템이 없습니다." << std::endl;
+        return;
+    }
 
     selectedItem->use(*this);
     selectedItem->lossItem();
 
+    
     delete selectedItem;
     inventory.erase(inventory.begin() + index);
+   
 }

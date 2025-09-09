@@ -12,9 +12,6 @@ class Item;
 
 Player player;
 GameManager gamemanager;
-HealthPotion h();
-AttackBoost a();
-ExperienceBoost e();
 
 int Shopmenu;
 
@@ -24,7 +21,7 @@ Shop::Shop(Player& p)
     ShopList.push_back(new HealthPotion("체력 포션", 50, 1, 10));
     ShopList.push_back(new AttackBoost("공격력 증가 포션", 10, 1, 20));
     ShopList.push_back(new ExperienceBoost("경험치 증가 포션", 20, 1, 30));
-}
+};
 
 Shop::~Shop() {
     for (auto item : ShopList) delete item;
@@ -38,32 +35,70 @@ void Shop::buyitem()
     int g = player.getGold();
     std::cout << "무엇을 구매하시겠습니까?" << std::endl;
     std::cout << " 1. 체력 포션 \n 2. 공격력 강화 \n 3. 경험치 강화 \n" << std::endl;
+    std::cout << player.getGold() << std::endl;
     std::cin >> itemselect;
     switch (itemselect)
     {//어떤 아이템을 살지 선택 - 몇개를 살지 선택 - 갯수*아이템 가격 만큼 골드 차감. - 플레이어 인벤토리에 push back - break
     case 1:
     {
+        HealthPotion h("체력 포션", 50, 1 ,10);
         std::cout << "체력 포션을 선택하셨습니다. 몇개 구매하시겠습니까?" << std::endl;
         std::cin >> itembuy;
-        HealthPotion h("체력 포션", 50, 1 ,10);
-        g -= h.gainItem() * itembuy;
-        player.Getinv().push_back(new HealthPotion("체력 포션", 50, 1, 10));
+        std::cout << player.getGold() << std::endl;
+        if (player.getGold() < 10)
+        {
+            std::cout << "골드가 부족합니다." << std::endl;
+            std::cout << "처음으로 돌아갑니다." << std::endl;
+            buyitem();
+        }
+        else
+        {
+            player.setGold(player.getGold() - h.getPrice() * itembuy);
+            std::cout << player.getGold() << std::endl;
+            player.Getinv().push_back(new HealthPotion("체력 포션", 50, 1, 10));
+        }
+
         break;
     }
     case 2:
     {
+        AttackBoost a("공격력 증가 포션", 10, 1, 20);
         std::cout << "공격력 강화를 선택하셨습니다. 몇개 구매하시겠습니까?" << std::endl;
         std::cin >> itembuy;
-        AttackBoost a("공격력 증가 포션", 10, 1, 20);
-        g -= a.gainItem() * itembuy;
+        std::cout << player.getGold() << std::endl;
+        if (player.getGold() < 20)
+        {
+            std::cout << "골드가 부족합니다." << std::endl;
+            std::cout << "처음으로 돌아갑니다." << std::endl;
+            buyitem();
+        }
+        else
+        {
+            player.setGold(player.getGold() - a.getPrice() * itembuy);
+            std::cout << player.getGold() << std::endl;
+            player.Getinv().push_back(new AttackBoost("공격력 증가 포션", 10, 1, 20));
+        }
+        break;   
     }
-    break;
+
     case 3:
     {
+        ExperienceBoost e("경험치 증가 포션", 20, 1, 30);
         std::cout << "경험치 강화를 선택하셨습니다. 몇개 구매하시겠습니까?" << std::endl;
         std::cin >> itembuy;
-        ExperienceBoost e("경험치 증가 포션", 20, 1, 30);
-        g -= e.gainItem() * itembuy;
+        std::cout << player.getGold() << std::endl;
+        if (player.getGold() < 30)
+        {
+            std::cout << "골드가 부족합니다." << std::endl;
+            std::cout << "처음으로 돌아갑니다." << std::endl;
+            buyitem();
+        }
+        else
+        {
+            player.setGold(player.getGold() - e.getPrice() * itembuy);
+            std::cout << player.getGold() << std::endl;
+            player.Getinv().push_back(new ExperienceBoost("경험치 증가 포션", 20, 1, 30));
+        }
         break;
     }
     default:
@@ -99,12 +134,12 @@ void Shop::displayitem()
 
     while (true)
     {
-       /* cout << "\n= = = 상점 물품 목록 = = =\n";
+        cout << "\n= = = 상점 물품 목록 = = =\n";
         for (int i = 0; i < (int)ShopList.size(); ++i) {
             Item* ip = ShopList[i];
             cout << i + 1 << ". [이름: " << ip->getName()
                 << ", 가격: " << ip->getPrice() << "G]\n" << endl;
-        }*/
+        }
 
         std::cout << " 메뉴를  선택해주세요 "<< std::endl;
         std::cout << "1.포션 구매하기" << std::endl;

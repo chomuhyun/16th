@@ -31,6 +31,6 @@ private:
 	
 	Player player;
 	Shop shop;
-	//Monster monster;
+	Monster monster;
 	//unique_ptr<Monster> nearbyMonster;
 };

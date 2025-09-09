@@ -43,7 +43,7 @@ void GameManager::selectAction()
 	{
 	case 1:
 		system("cls");
-		//monster.TurnBattle();
+		//TurnBattle(player.getMaxHealth(),player.getAttack(),player.getLevel());
 		break;
 	case 2:
 		system("cls");

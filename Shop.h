@@ -13,11 +13,6 @@ public:
 	Shop(Player& p);
 	~Shop();
 	string shopitemname; //아이템 이름
-	int HPpotionprice = 10;
-	int ATKboostprice = 20;
-	int EXPboostprice = 30;
-
-
 
 	void buyitem(); //아이템 구매
 	void sellitem(); //아이템 판매

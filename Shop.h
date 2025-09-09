@@ -18,6 +18,6 @@ public:
 	void sellitem(); //아이템 판매
 	void displayitem(); //아이템 출력  
 private:
-	vector<Item*> ShopList;
-	Player& player;
+	vector<Item*> ShopList; //상점 아이템 동적 배열
+	Player& player; // Player 클래스에대한 참조
 };

@@ -11,9 +11,8 @@ using namespace std;
 class Item;
 
 
-Shop::Shop(Player& p)
-    : player(p)
-{
+Shop::Shop(Player& p):player(p) // Shop 생성자
+{ // 동적 할당
     ShopList.push_back(new HealthPotion("체력 포션", 50, 1, 10));
     ShopList.push_back(new AttackBoost("공격력 증가 포션", 10, 1, 20));
     ShopList.push_back(new ExperienceBoost("경험치 증가 포션", 20, 1, 30));
@@ -56,6 +55,7 @@ void Shop::buyitem()
         else
         {
             player.setGold(player.getGold() - h.getPrice() * itembuy);
+            std::cout << "체력 포션을" << itembuy << " 개 구매 했습니다." << std::endl;
             std::cout << "[남은 골드 : " << player.getGold() << "G]" << std::endl;
 
             bool found = false;
@@ -95,6 +95,7 @@ void Shop::buyitem()
         else
         {
             player.setGold(player.getGold() - a.getPrice() * itembuy);
+            std::cout << "공격력 강화 포션을" << itembuy << " 개 구매 했습니다." << std::endl;
             std::cout << "[남은 골드 : " << player.getGold() << "G]" << std::endl;
 
             bool found = false;
@@ -134,6 +135,7 @@ void Shop::buyitem()
         else
         {
             player.setGold(player.getGold() - e.getPrice() * itembuy);
+            std::cout << "경험치 증가 포션을" << itembuy << " 개 구매 했습니다." << std::endl;
             std::cout << "[남은 골드 : " << player.getGold() << "G]" << std::endl;
 
             bool found = false;
@@ -189,24 +191,33 @@ void Shop::sellitem()
         std::cout << " 판매할 갯수 >>> ";
         std::cin >> itemsell; //판매할 아이템 수량
         system("cls");
-        double total = ((h.getPrice() * itemsell) * 0.6);
-        player.setGold(player.getGold() + total);
-        std::cout << "[현재 골드 : " << player.getGold() << "G]" << std::endl;
-        for (int i = 0, erased = 0; i < player.Getinv().size() && erased < itemsell; )
-        {//해당 타입의 아이템을 판매 수량만큼 삭제하는 코드
-            Item* item = player.Getinv()[i];
-            if (dynamic_cast<HealthPotion*>(item)) 
-            {
-                delete item;
-                player.Getinv().erase(player.Getinv().begin() + i);
-                ++erased;
-            }
-            else
-            {
-               ++i;
+
+        AttackBoost* atkItem = nullptr;
+        for (auto* it : player.Getinv()) {
+            if (auto* ab = dynamic_cast<AttackBoost*>(it)) {
+                atkItem = ab;
+                break;
             }
         }
-        
+        int available = atkItem ? atkItem->getCount() : 0;
+        if (itemsell <= 0 || itemsell > available) {
+            std::cout << "보유 수량이 부족합니다. (보유: " << available << "개)\n";
+            break;
+        }
+        double total = (h.getPrice() * itemsell) * 0.6;
+        player.setGold(player.getGold() + total);
+        std::cout << "[현재 골드 : " << player.getGold() << "G]\n";
+        for (int i = 0; i < itemsell; ++i) atkItem->lossItem();
+        if (atkItem->getCount() == 0) {
+            auto& inv = player.Getinv();
+            for (size_t i = 0; i < inv.size(); ++i) {
+                if (inv[i] == atkItem) {
+                    delete inv[i];
+                    inv.erase(inv.begin() + i);
+                    break;
+                }
+            }
+        }
         break;
     }
     case 2:
@@ -216,21 +227,31 @@ void Shop::sellitem()
         std::cout << " 판매할 갯수 >>> ";
         std::cin >> itemsell;
         system("cls");
-        double total = ((a.getPrice() * itemsell) * 0.6);
-        player.setGold(player.getGold() + total);
-        std::cout << "[현재 골드 : " << player.getGold() << "G]" << std::endl;
-        for (int i = 0, erased = 0; i < player.Getinv().size() && erased < itemsell; )
-        {//해당 타입의 아이템을 판매 수량만큼 삭제하는 코드
-            Item* item = player.Getinv()[i];
-            if (dynamic_cast<AttackBoost*>(item))
-            {
-                delete item;
-                player.Getinv().erase(player.Getinv().begin() + i);
-                ++erased;
+
+        AttackBoost* atkItem = nullptr;
+        for (auto* it : player.Getinv()) {
+            if (auto* ab = dynamic_cast<AttackBoost*>(it)) { 
+                atkItem = ab;
+                break; 
             }
-            else
-            {
-                ++i;
+        }
+        int available = atkItem ? atkItem->getCount() : 0;
+        if (itemsell <= 0 || itemsell > available) {
+            std::cout << "보유 수량이 부족합니다. (보유: " << available << "개)\n";
+            break;
+        }
+        double total = (a.getPrice() * itemsell) * 0.6;
+        player.setGold(player.getGold() + total);
+        std::cout << "[현재 골드 : " << player.getGold() << "G]\n";
+        for (int i = 0; i < itemsell; ++i) atkItem->lossItem();
+        if (atkItem->getCount() == 0) {
+            auto& inv = player.Getinv();
+            for (size_t i = 0; i < inv.size(); ++i) {
+                if (inv[i] == atkItem) {
+                    delete inv[i];
+                    inv.erase(inv.begin() + i);
+                    break;
+                }
             }
         }
         break;
@@ -242,21 +263,31 @@ void Shop::sellitem()
         std::cout << " 판매할 갯수 >>> ";
         std::cin >> itemsell;
         system("cls");
-        double total = ((e.getPrice() * itemsell) * 0.6);
-        player.setGold(player.getGold() + total);
-        std::cout << "[현재 골드 : " << player.getGold() << "G]" << std::endl;
-        for (int i = 0, erased = 0; i < player.Getinv().size() && erased < itemsell; )
-        {
-            Item* item = player.Getinv()[i];
-            if (dynamic_cast<ExperienceBoost*>(item))
-            {
-                delete item;
-                player.Getinv().erase(player.Getinv().begin() + i);
-                ++erased;
+
+        AttackBoost* atkItem = nullptr;
+        for (auto* it : player.Getinv()) {
+            if (auto* ab = dynamic_cast<AttackBoost*>(it)) {
+                atkItem = ab;
+                break;
             }
-            else
-            {
-                ++i;
+        }
+        int available = atkItem ? atkItem->getCount() : 0;
+        if (itemsell <= 0 || itemsell > available) {
+            std::cout << "보유 수량이 부족합니다. (보유: " << available << "개)\n";
+            break;
+        }
+        double total = (e.getPrice() * itemsell) * 0.6;
+        player.setGold(player.getGold() + total);
+        std::cout << "[현재 골드 : " << player.getGold() << "G]\n";
+        for (int i = 0; i < itemsell; ++i) atkItem->lossItem();
+        if (atkItem->getCount() == 0) {
+            auto& inv = player.Getinv();
+            for (size_t i = 0; i < inv.size(); ++i) {
+                if (inv[i] == atkItem) {
+                    delete inv[i];
+                    inv.erase(inv.begin() + i);
+                    break;
+                }
             }
         }
         break;

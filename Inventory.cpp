@@ -2,8 +2,8 @@
 #include "Player.h"
 #include <iostream>
 
-AttackBoost::AttackBoost(std::string n, int increase) // 공격력 부스트(이름, 증가량)
-	:name(n), attackIncrease(increase) {
+AttackBoost::AttackBoost(std::string n, int increase, int Numberof, int price) // 공격력 부스트(이름, 증가량, 수량, 가격)
+	:name(n), attackIncrease(increase), numberofAttackBoost(Numberof), priceAttackBoost(price){
 }
 
 std::string AttackBoost::getName() { // 공격력 부스트 이름 반환 함수
@@ -33,8 +33,8 @@ int AttackBoost::lossItem() // 공격력 부스트 개수 -1
 	}
 }
 
-HealthPotion::HealthPotion(std::string n, int restore) // 회복 포션(이름, 회복량)
-	:name(n), healthRestore(restore) {
+HealthPotion::HealthPotion(std::string n, int restore, int Numberof, int price) // 회복 포션(이름, 회복량, 수량)
+	:name(n), healthRestore(restore), numberofHealthPotion(Numberof), priceHealthPotion(price){
 }
 
 std::string HealthPotion::getName() {// 회복 포션 이름 반환 함수
@@ -63,8 +63,8 @@ int HealthPotion::lossItem() // 체력 포션 개수 -1
 	}
 }
 
-ExperienceBoost::ExperienceBoost(std::string n, int Increase) // 경험치 부스트(이름, 증가량)
-	:name(n), experienceIncrease(Increase) {
+ExperienceBoost::ExperienceBoost(std::string n, int Increase, int Numberof, int price) // 경험치 부스트(이름, 증가량, 수량, 가격)
+	:name(n), experienceIncrease(Increase), numberofExperienceBoost(Numberof), priceExperienceBoost(price){
 }
 
 std::string ExperienceBoost::getName() { // 경험치 부스트 이름 반환 함수

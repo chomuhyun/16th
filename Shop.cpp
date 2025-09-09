@@ -4,15 +4,19 @@
 #include "Player.h"
 #include "Inventory.h"
 #include "Shop.h"
+#include "GameManager.h"
 
 using namespace std;
 
 class Item;
 
 Player player;
+GameManager gamemanager;
 HealthPotion h();
 AttackBoost a();
 ExperienceBoost e();
+
+int Shopmenu;
 
 Shop::Shop(Player& p)
     : player(p)
@@ -46,7 +50,7 @@ void Shop::buyitem()
     {
         std::cout << "공격력 강화를 선택하셨습니다. 몇개 구매하시겠습니까?" << std::endl;
         std::cin >> itembuy;
-        HealthPotion h("체력 포션", 50);
+        AttackBoost a("체력 포션", 10);
         g -= a.gainItem() * itembuy;
     }
     break;
@@ -87,25 +91,37 @@ void Shop::sellitem()
 };
 void Shop::displayitem()
 {
-    cout << "\n= = = 상점 물품 목록 = = =\n";
-    for (int i = 0; i < (int)ShopList.size(); ++i) {
-        Item* ip = ShopList[i];
-        cout << i + 1 << ". [이름: " << ip->getName()
-            << ", 가격: " << ip->getPrice() << "G]\n";
-    }
-    cout << endl;
+    int Shopmenu;
+
+    while (true)
+    {
+       /* cout << "\n= = = 상점 물품 목록 = = =\n";
+        for (int i = 0; i < (int)ShopList.size(); ++i) {
+            Item* ip = ShopList[i];
+            cout << i + 1 << ". [이름: " << ip->getName()
+                << ", 가격: " << ip->getPrice() << "G]\n" << endl;
+        }*/
+
+        std::cout << " 메뉴를  선택해주세요 "<< std::endl;
+        std::cout << "1.포션 구매하기" << std::endl;
+        std::cout << "2.포션 판매하기" << std::endl;
+        std::cout << "3.포션상점 나가기" << std::endl;
+
+        std::cin >> Shopmenu;
+        switch (Shopmenu)
+        {
+        case 1:
+            buyitem();
+            break;
+        case 2:
+            sellitem();
+            break;
+        case 3:
+            gamemanager.selectAction();
+            break;
+        default:
+            std::cout << "잘못된 입력입니다." << std::endl;
+            break;
+        };
+    };
 };
-
-
-
-    /* void Shop::displayitem()
-     {
-         vector<Item*> ShopList;
-         
-         ShopList = { new HealthPotion("체력 포션", 50), new AttackBoost("공격력 증가 포션", 10), new ExperienceBoost("경험치 증가 포션", 20) };
-         std::cout << "= = = 상점 물품 목록 = = =" << std::endl;
-         for (const auto& ip : ShopList) {
-             std::cout << "[이름 : " << ip->getName() << ", 가격 " <<  << "G]" << std::endl;
-         }
-     
-     };*/

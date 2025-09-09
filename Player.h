@@ -24,7 +24,7 @@ public: // 멤버함수
 	void setGold(int coin); // 골드
 	void setHealth(int hp); // 체력
 	void addExperience(int amount); // 경험치
-
+	void ViewInventory();
 	void levelUp();
 	void useItem(); // 아이템 사용
 	void displayStatus(); // 캐릭터 스테이터스 창
@@ -34,14 +34,10 @@ private: // 멤버변수
 	std::vector<Item*>inv;
 	//레벨 공격력 초기체력 고정
 	std::string name;
-	int* P_level;
 	int level;
-	int HP;
 	int health;
-	int* P_health;
 	int MaxHealth;
 	int attack;
-	int* P_attack;
 	int gold;
 	int experience;
 

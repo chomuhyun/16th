@@ -39,7 +39,7 @@ private: // ¸â¹öº¯¼ö
 	std::string name;
 	int level;
 	int health;
-	int MaxHealth = 200;
+	int MaxHealth;
 	int attack;
 	int gold;
 	int experience;

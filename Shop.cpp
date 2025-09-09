@@ -21,9 +21,13 @@ int Shopmenu;
 Shop::Shop(Player& p)
     : player(p)
 {
-    ShopList.push_back(new HealthPotion("체력 포션", 50));
-    ShopList.push_back(new AttackBoost("공격력 증가 포션", 10));
-    ShopList.push_back(new ExperienceBoost("경험치 증가 포션", 20));
+    ShopList.push_back(new HealthPotion("체력 포션", 50, 1, 10));
+    ShopList.push_back(new AttackBoost("공격력 증가 포션", 10, 1, 20));
+    ShopList.push_back(new ExperienceBoost("경험치 증가 포션", 20, 1, 30));
+}
+
+Shop::~Shop() {
+    for (auto item : ShopList) delete item;
 }
 void Shop::buyitem()
 {  //플레이어가 가지고있는 인벤토리 배열에 아이템 추가 , 플레이어가 가지고있는 gold라는 변수에서 itemprice라는 변수를 빼준다
@@ -41,16 +45,16 @@ void Shop::buyitem()
     {
         std::cout << "체력 포션을 선택하셨습니다. 몇개 구매하시겠습니까?" << std::endl;
         std::cin >> itembuy;
-        HealthPotion h("체력 포션", 50);
+        HealthPotion h("체력 포션", 50, 1 ,10);
         g -= h.gainItem() * itembuy;
-        player.Getinv().push_back(new HealthPotion("체력 포션", 50));
+        player.Getinv().push_back(new HealthPotion("체력 포션", 50, 1, 10));
         break;
     }
     case 2:
     {
         std::cout << "공격력 강화를 선택하셨습니다. 몇개 구매하시겠습니까?" << std::endl;
         std::cin >> itembuy;
-        AttackBoost a("체력 포션", 10);
+        AttackBoost a("공격력 증가 포션", 10, 1, 20);
         g -= a.gainItem() * itembuy;
     }
     break;
@@ -58,7 +62,7 @@ void Shop::buyitem()
     {
         std::cout << "경험치 강화를 선택하셨습니다. 몇개 구매하시겠습니까?" << std::endl;
         std::cin >> itembuy;
-        ExperienceBoost e("경험치 증가 포션", 20);
+        ExperienceBoost e("경험치 증가 포션", 20, 1, 30);
         g -= e.gainItem() * itembuy;
         break;
     }

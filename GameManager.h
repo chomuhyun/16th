@@ -1,11 +1,16 @@
 #pragma once
 #include <memory>
 #include "Shop.h"
+#include "Monster.h"
+
 
 class GameManager
 {
 public:
-	GameManager() : player(), shop(player) {}
+	GameManager(std::string nickname = "Default")
+		: player(nickname), shop(player) 
+	{
+	}
 	~GameManager() {}
 	
 	string nickname;
@@ -26,5 +31,6 @@ private:
 	
 	Player player;
 	Shop shop;
+	//Monster monster;
 	//unique_ptr<Monster> nearbyMonster;
 };

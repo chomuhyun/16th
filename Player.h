@@ -25,7 +25,6 @@ public: // 멤버함수
 	void setGold(int coin); // 골드
 	void setHealth(int hp); // 체력
 	void addExperience(int amount); // 경험치
-	//void Battle(bool b); // 몬스터 전투시
 	void levelUp();
 	void useItem(); // 아이템 사용
 	void displayStatus(); // 캐릭터 스테이터스 창

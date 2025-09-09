@@ -25,7 +25,7 @@ public:
 private:
 	vector<Item*> ShopList;
 	Player player;
-	HealthPotion h();
-	AttackBoost a();
-	ExperienceBoost e();
+	HealthPotion h;
+	AttackBoost a;
+	ExperienceBoost e;
 };

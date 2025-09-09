@@ -45,13 +45,7 @@ void HealthPotion::use(Player& player) { // 회복 포션 사용 후 체력 증가 함수
 	int currentHealth = player.getHealth();  // getter로 현재체력 읽음
 	int maxHealth = player.getMaxHealth(); // getter로 최대체력 읽음
 
-	if (currentHealth == maxHealth) 
-	{
-		std::cout << "체력이 가득 찼습니다! 포션을 사용할 수 없습니다.\n";
-		return;
-	}
-
-	else if (currentHealth + healthRestore < maxHealth) // (조건)현재체력 + 회복량 < 최대체력
+	if (currentHealth + healthRestore < maxHealth) // (조건)현재체력 + 회복량 < 최대체력
 	{
 		player.setHealth(currentHealth + healthRestore); // setter로 회복량 만큼 체력 증가
 		std::cout << name << " 사용! 체력이 " << healthRestore << "만큼 회복되었습니다. \n";

@@ -96,7 +96,4 @@ void Inventory::PrintCurrentItemAndGold(Player& player, HealthPotion& hp, Attack
 	std::cout << "[체력 포션: " << hp.getCount() << "개, 공격력 증가 포션: " << ab.getCount() <<"개, 경험치 증가 포션: "<< exp.getCount() <<
 		"개, 현재 Gold: " << player.getGold() << "G]" << std::endl;
 }
-/* 
-Inventory inv;
-inv.PrintCurrentItemAndGold(player, hp, ab, exp);
-*/
+

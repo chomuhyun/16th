@@ -25,6 +25,10 @@ Shop::Shop(Player& p)
     ShopList.push_back(new AttackBoost("공격력 증가 포션", 10, 1, 20));
     ShopList.push_back(new ExperienceBoost("경험치 증가 포션", 20, 1, 30));
 }
+
+Shop::~Shop() {
+    for (auto item : ShopList) delete item;
+}
 void Shop::buyitem()
 {  //플레이어가 가지고있는 인벤토리 배열에 아이템 추가 , 플레이어가 가지고있는 gold라는 변수에서 itemprice라는 변수를 빼준다
     int MXI = 10;

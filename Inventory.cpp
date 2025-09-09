@@ -42,9 +42,18 @@ std::string HealthPotion::getName() {// 회복 포션 이름 반환 함수
 }
 
 void HealthPotion::use(Player& player) { // 회복 포션 사용 후 체력 증가 함수
-	int currentHealth = player.getHealth();          // getter로 읽고
-	player.setHealth(currentHealth + healthRestore); // setter로 체력 증가
-	std::cout << name << " 사용! 체력이 " << healthRestore << "만큼 회복되었습니다. \n";
+	int currentHealth = player.getHealth();  // getter로 현재체력 읽음
+	int maxHealth = player.getMaxHealth(); // getter로 최대체력 읽음
+	if (currentHealth + healthRestore < maxHealth) // (조건)현재체력 + 회복량 < 최대체력
+	{
+		player.setHealth(currentHealth + healthRestore); // setter로 회복량 만큼 체력 증가
+		std::cout << name << " 사용! 체력이 " << healthRestore << "만큼 회복되었습니다. \n";
+	}
+	else 
+	{
+		player.setHealth(maxHealth); // 현재체력 + 회복량이 최대체력은 넘기지 않음
+		std::cout << name << " 사용! 체력이 완전히 회복되었습니다. \n";
+	}
 }
 
 int HealthPotion::gainItem() // 체력 포션 개수 +1

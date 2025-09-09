@@ -29,9 +29,9 @@ void GameManager::GameStart()
    
 void GameManager::selectAction() 
 {
-	HealthPotion hp("체력포션",50);
-	AttackBoost ab("공격력 증가 포션" , 50);
-	ExperienceBoost exp("경험치 증가 포션" ,50);
+	HealthPotion hp("체력포션",50, 1, 10);
+	AttackBoost ab("공격력 증가 포션" , 50, 1, 20);
+	ExperienceBoost exp("경험치 증가 포션" ,50, 1, 30);
 	int selectaction;
 	cout << " ==============원하시는 선택지를 골라주세요==============\n" << endl;
 	cout << " 전투 - 1.\n 상점 - 2.\n 가방 확인 - 3.\n 스텟 관리 - 4.\n" << endl;

@@ -20,7 +20,7 @@ class HealthPotion : public Item {
 private:
 	std::string name; // 아이템 이름 (ex: 빨간 포션)
 	int healthRestore; // 회복량 (ex: 체력+50)
-	int numberofHealthPotion = 1; // 회복포션 개수 1개 초기값
+	int numberofHealthPotion; // 회복포션 개수 초기값
 	int priceHealthPotion =10; // 회복포션 가격 선언
 public:
 	HealthPotion(std::string n, int Restore, int Numberof, int price); //생성자: 이름(n), 회복량(Restore), 수량(Numberof), 가격(price)
@@ -36,7 +36,7 @@ class AttackBoost : public Item {
 private:
 	std::string name; // 아이템 이름 (ex: 파워 부스트)
 	int attackIncrease; // 증가량 (ex: 공격력+10)
-	int numberofAttackBoost = 1; // 공격 부스트 개수 1개 초기값
+	int numberofAttackBoost; // 공격 부스트 개수 초기값
 	int priceAttackBoost = 20; // 공격 부스트 가격 선언
 public:
 	AttackBoost(std::string n, int Increase, int Numberof, int price); //생성자: 이름(n), 증가량(Increase), 수량(Numberof), 가격(price)
@@ -52,7 +52,7 @@ class ExperienceBoost : public Item {
 private:
 	std::string name; // 아이템 이름 (ex: 경험치 부스트)
 	int experienceIncrease; // 증가량 (ex: 경험치+20)
-	int numberofExperienceBoost =1; // 경험치 부스트 개수 1개 초기값
+	int numberofExperienceBoost; // 경험치 부스트 개수 초기값
 	int priceExperienceBoost = 30; // 경험치 부스트 가격 선언
 public:
 	ExperienceBoost(std::string n, int Increase, int Numberof, int price); //생성자: 이름(n), 증가량(Increase), 수량(Numberof), 가격(price)

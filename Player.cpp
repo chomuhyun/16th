@@ -49,6 +49,7 @@ void Player::displayStatus()
 
 }
 
+
 void Player::levelUp() // 레벨업시 체력 풀 회복
 {
 	MaxHealth += (level * 20);  // 레벨에 20곱한 값만큼 최대체력증가

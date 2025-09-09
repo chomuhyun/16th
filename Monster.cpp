@@ -19,7 +19,7 @@ Monster* SpawnByIndex(int index, int level) {
     default: return new Slime(level);
     }
 }
-
+ 
 void TurnBattle(int& getHealth, int getAttack, int getLevel) {
     Monster* mon = SpawnByIndex((getHealth + getAttack) % 4, getLevel);
 

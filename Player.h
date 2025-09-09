@@ -1,15 +1,17 @@
 #pragma once
 #include <iostream>
 #include <vector>
-
+#include <string>
 
 class Item; // 전방선언
 
 class Player
 {
 public: // 멤버함수
-	Player() {}
+	
 	Player(std::string name);// 생성자
+
+	~Player() {}  // 소멸자
 
 	//getter
 	int getAttack() { return attack; } // 공격
@@ -28,16 +30,17 @@ public: // 멤버함수
 	void levelUp();
 	void useItem(); // 아이템 사용
 	void displayStatus(); // 캐릭터 스테이터스 창
+	//std::string InputName(string Name);
 
 private: // 멤버변수
 
-	std::vector<Item*>inv;
+	std::vector<Item*>inv;//동적배열
 	std::string name;
 	int level;
 	int health;
 	int MaxHealth;
 	int attack;
-	int gold = 20;
+	int gold;
 	int experience;
 
 };

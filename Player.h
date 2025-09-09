@@ -37,7 +37,7 @@ private: // ¸â¹öº¯¼ö
 	int health;
 	int MaxHealth;
 	int attack;
-	int gold = 20;
+	int gold;
 	int experience;
 
 };

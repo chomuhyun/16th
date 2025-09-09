@@ -4,8 +4,9 @@
 #include "Inventory.h"
 #include "GameManager.h"
 
-GameManager g;
+
 int main()
 {
+    GameManager g;
  	g.GameStart();
 }

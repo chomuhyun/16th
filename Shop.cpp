@@ -11,7 +11,6 @@ using namespace std;
 class Item;
 
 Player player;
-GameManager gamemanager;
 
 int Shopmenu;
 
@@ -156,7 +155,7 @@ void Shop::displayitem()
             sellitem();
             break;
         case 3:
-            gamemanager.selectAction();
+            return;
             break;
         default:
             std::cout << "잘못된 입력입니다." << std::endl;

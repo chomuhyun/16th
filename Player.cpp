@@ -11,9 +11,9 @@ using namespace std;
 
 
 Player::Player(std::string name)
-	: name(name), level(1), health(200), attack(30), experience(0), inv()
+	: name(name), level(1), health(200), MaxHealth(200), gold(100), attack(30), experience(0), inv()
 {
-
+    inv.push_back(new HealthPotion("체력 물약", 50, 1, 10));
 }
 
 //Setter 함수

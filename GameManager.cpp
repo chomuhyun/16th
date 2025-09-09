@@ -43,7 +43,7 @@ void GameManager::selectAction()
 	{
 	case 1:
 		system("cls");
-		TurnBattle(player.getMaxHealth(),player.getAttack(),player.getLevel());
+		//TurnBattle(player.getMaxHealth(),player.getAttack(),player.getLevel());
 		break;
 	case 2:
 		system("cls");

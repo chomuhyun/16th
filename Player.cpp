@@ -13,8 +13,27 @@ using namespace std;
 Player::Player(std::string name)
 	: name(name), level(1), health(200), attack(30), experience(0), inv()
 {
-	inv.push_back(new HealthPotion("빨간 포션", 50));
+
 }
+
+//Setter 함수
+
+void Player::setAttack(int atk)
+{
+    attack = atk;
+}
+
+void Player::setGold(int coin)
+{
+    gold = coin;
+}
+
+
+void Player::setHealth(int hp)
+{
+    health = hp;
+}
+
 
 void Player::displayStatus()
 {
@@ -30,40 +49,29 @@ void Player::displayStatus()
 
 }
 
-void Player::addExperience(int amount)
-{
-	experience += amount;
-	if (experience >= 100)
-		experience -= 100;
-	levelUp();
-	cout << amount << "경험치를 획득했습니다! 현재 경험치:" << experience << endl;
-}
-
-
-void Player::Battle(bool b)// 이겼을때
-{
-    while (b) // b가 true 라면 (승리시)
-    {
-        int win = ((몬스터 레벨) / level) * 10;
-
-        experience += win; //경험치
-
-        break;
-    }
-
-    int a = (몬스터 레벨 + level) % 2; // 골드
-
-    if (a >= 5) // true , false
-    {
-        gold += 10;
-    }
-    else
-    {
-        gold += 20;
-    }
-
-}
-
+//void Player::Battle(bool b)// 이겼을때
+//{
+//    while (b) // b가 true 라면 (승리시)
+//    {
+//        int win = ((몬스터 레벨) / level) * 10;
+//
+//        experience += win; //경험치
+//
+//        break;
+//    }
+//
+//    int a = (몬스터 레벨 + level) % 2; // 골드
+//
+//    if (a >= 5) // true , false
+//    {
+//        gold += 10;
+//    }
+//    else
+//    {
+//        gold += 20;
+//    }
+//
+//}
 
 void Player::levelUp() // 레벨업시 체력 풀 회복
 {
@@ -76,39 +84,18 @@ void Player::levelUp() // 레벨업시 체력 풀 회복
 		cout << "레벨업! 현재 레벨:" << level << endl;
 	}
 }
-//Setter 함수
-void Player::setAttack(int atk) 
+
+void Player::addExperience(int amount) // 경험치
 {
-	attack = atk;
+    experience += amount;
+    if (experience >= 100)
+        experience -= 100;
+    levelUp();
+    cout << amount << "경험치를 획득했습니다! 현재 경험치:" << experience << endl;
 }
 
-void Player::setGold(int coin)
+void Player::useItem() 
 {
-	gold = coin;
-}
-
-
-void Player::setHealth(int hp)
-{
-	health = hp;
-}
-
-
-void Player::ViewInventory() 
-{
-
-    for (const auto& item : Getinv())
-    {
-        
-        cout << item->getName() << " "<< item.getCount() << "개"<< endl;
-
-    }
-
-
-}
-
-
-void Player::useItem() {
 
     int input;
     std::cin >> input;

@@ -136,7 +136,7 @@ void Player::useItem()
 
     selectedItem->use(*this);
 
-    if (health >= MaxHealth ) //현재체력이 최대 체력보다 크다면 실행
+    if (health >= MaxHealth && input == 1 ) //현재체력이 최대 체력보다 크다면 실행
     {
         std::cout << "체력이 가득 찼습니다! 포션을 사용할 수 없습니다." << endl;
         return;

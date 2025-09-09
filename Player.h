@@ -8,8 +8,10 @@ class Item; // 전방선언
 class Player
 {
 public: // 멤버함수
+	
 	Player(std::string name);// 생성자
-	~Player();  // 소멸자
+
+	~Player() {}  // 소멸자
 
 	//getter
 	int getAttack() { return attack; } // 공격

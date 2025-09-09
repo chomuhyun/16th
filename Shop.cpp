@@ -47,8 +47,8 @@ void Shop::buyitem()
         std::cout << "체력 포션을 선택하셨습니다. 몇개 구매하시겠습니까?" << std::endl;
         std::cout << " 구매할 갯수 >>> ";
         std::cin >> itembuy;
-        int total = h.getPrice() * itembuy; // total = 물건 가격 * 아이템 구매 수량
-        std::cout << "[현재 골드 : " << player.getGold() << "G]" << std::endl;
+        system("cls");
+        double total = h.getPrice() * itembuy; // total = 물건 가격 * 아이템 구매 수량
         if (player.getGold() < total)
         {
             std::cout << "===========================" << std::endl;
@@ -59,7 +59,7 @@ void Shop::buyitem()
         else
         {
             player.setGold(player.getGold() - h.getPrice() * itembuy);
-            std::cout << player.getGold() << std::endl;
+            std::cout << "[남은 골드 : " << player.getGold() << "G]" << std::endl;
 
             bool found = false;
             for (auto& item : player.Getinv())
@@ -86,8 +86,8 @@ void Shop::buyitem()
         std::cout << "공격력 강화를 선택하셨습니다. 몇개 구매하시겠습니까?" << std::endl;
         std::cout << " 구매할 갯수 >>> ";
         std::cin >> itembuy;
-        int total = a.getPrice() * itembuy;
-        std::cout << "[현재 골드 : " << player.getGold() << "G]" << std::endl;
+        double total = a.getPrice() * itembuy;
+        system("cls");
         if (player.getGold() < total)
         {
             std::cout << "===========================" << std::endl;
@@ -98,12 +98,12 @@ void Shop::buyitem()
         else
         {
             player.setGold(player.getGold() - a.getPrice() * itembuy);
-            std::cout << player.getGold() << std::endl;
+            std::cout << "[남은 골드 : " << player.getGold() << "G]" << std::endl;
 
             bool found = false;
             for (auto& item : player.Getinv())
             {
-                if (item->getName() == "체력 포션")
+                if (item->getName() == "공격력 증가 포션")
                 {
                     for (int i = 0; i < itembuy; ++i)
                         item->gainItem();
@@ -111,7 +111,12 @@ void Shop::buyitem()
                     break;
                 }
             }
-            break;
+            if (!found)
+            {
+                AttackBoost* newATKPotion = new AttackBoost("공격력 증가 포션", 10, itembuy, 20);
+                player.Getinv().push_back(newATKPotion);
+            }
+        break;
         }
     }
     case 3:
@@ -120,8 +125,8 @@ void Shop::buyitem()
         std::cout << "경험치 강화를 선택하셨습니다. 몇개 구매하시겠습니까?" << std::endl;
         std::cout << " 구매할 갯수 >>> ";
         std::cin >> itembuy;
-        int total = e.getPrice() * itembuy;
-        std::cout << "[현재 골드 : " << player.getGold() << "G]" << std::endl;
+        double total = e.getPrice() * itembuy;
+        system("cls");
         if (player.getGold() < total)
         {
             std::cout << "===========================" << std::endl;
@@ -132,12 +137,12 @@ void Shop::buyitem()
         else
         {
             player.setGold(player.getGold() - e.getPrice() * itembuy);
-            std::cout << player.getGold() << std::endl;
+            std::cout << "[남은 골드 : " << player.getGold() << "G]" << std::endl;
 
             bool found = false;
             for (auto& item : player.Getinv())
             {
-                if (item->getName() == "체력 포션")
+                if (item->getName() == "경험치 증가 포션")
                 {
                     for (int i = 0; i < itembuy; ++i)
                         item->gainItem();
@@ -145,7 +150,12 @@ void Shop::buyitem()
                     break;
                 }
             }
-            break;
+            if (!found)
+            {
+                ExperienceBoost* newEXPPotion = new ExperienceBoost("경험치 증가 포션", 20, itembuy, 30);
+                player.Getinv().push_back(newEXPPotion);
+        }
+        break;
         }
     }
     case 4:
@@ -181,9 +191,10 @@ void Shop::sellitem()
         std::cout << "체력 포션을 선택하셨습니다. 몇개 판매하시겠습니까?" << std::endl;
         std::cout << " 판매할 갯수 >>> ";
         std::cin >> itemsell; //판매할 아이템 수량
-        int total = (h.getPrice() * (itemsell * 0.6));
+        system("cls");
+        double total = ((h.getPrice() * itemsell) * 0.6);
+        player.setGold(player.getGold() + total);
         std::cout << "[현재 골드 : " << player.getGold() << "G]" << std::endl;
-        std::cout << "[남은 골드 : " << player.getGold() << "G]" << std::endl;
         for (int i = 0, erased = 0; i < player.Getinv().size() && erased < itemsell; )
         {//해당 타입의 아이템을 판매 수량만큼 삭제하는 코드
             Item* item = player.Getinv()[i];
@@ -192,20 +203,24 @@ void Shop::sellitem()
                 delete item;
                 player.Getinv().erase(player.Getinv().begin() + i);
                 ++erased;
-            } else
+            }
+            else
             {
                ++i;
             }
         }
+        
         break;
     }
     case 2:
     {
         AttackBoost a("공격력 증가 포션", 10, 1, 20);
-        std::cout << "공격력 강화를 선택하셨습니다. 몇개 구매하시겠습니까?" << std::endl;
-        std::cout << " 구매할 갯수 >>> ";
+        std::cout << "공격력 강화를 선택하셨습니다. 몇개 판매하시겠습니까?" << std::endl;
+        std::cout << " 판매할 갯수 >>> ";
         std::cin >> itemsell;
-        int total = (a.getPrice() * (itemsell * 0.6));
+        system("cls");
+        double total = ((a.getPrice() * itemsell) * 0.6);
+        player.setGold(player.getGold() + total);
         std::cout << "[현재 골드 : " << player.getGold() << "G]" << std::endl;
         std::cout << "[남은 골드 : " << player.getGold() << "G]" << std::endl;
         for (int i = 0, erased = 0; i < player.Getinv().size() && erased < itemsell; )
@@ -227,10 +242,12 @@ void Shop::sellitem()
     case 3:
     {
         ExperienceBoost e("경험치 증가 포션", 20, 1, 30);
-        std::cout << "경험치 강화를 선택하셨습니다. 몇개 구매하시겠습니까?" << std::endl;
-        std::cout << " 구매할 갯수 >>> ";
+        std::cout << "경험치 강화를 선택하셨습니다. 몇개 판매하시겠습니까?" << std::endl;
+        std::cout << " 판매할 갯수 >>> ";
         std::cin >> itemsell;
-        int total = (e.getPrice() * (itemsell * 0.6));
+        system("cls");
+        double total = ((e.getPrice() * itemsell) * 0.6);
+        player.setGold(player.getGold() + total);
         std::cout << "[현재 골드 : " << player.getGold() << "G]" << std::endl;
         std::cout << "[남은 골드 : " << player.getGold() << "G]" << std::endl;
         for (int i = 0, erased = 0; i < player.Getinv().size() && erased < itemsell; )
@@ -272,7 +289,7 @@ void Shop::displayitem()
             cout << i + 1 << ". [이름: " << ip->getName()
                 << ", 가격: " << ip->getPrice() << "G]\n" << endl;
         }
-
+        std::cout << "[현재 골드 : " << player.getGold() << "G]" << std::endl;
         std::cout << "==========================" << std::endl;
         std::cout << "II 메뉴를  선택해주세요 II"<< std::endl;
         std::cout << "II   1.포션 구매하기    II" << std::endl;
@@ -284,9 +301,11 @@ void Shop::displayitem()
         switch (Shopmenu)
         {
         case 1:
+            system("cls");
             buyitem();
             break;
         case 2:
+            system("cls");
             sellitem();
             break;
         case 3:

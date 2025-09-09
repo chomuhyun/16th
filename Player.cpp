@@ -19,6 +19,8 @@ Player::Player(std::string name)
 
 }
 
+
+
 /*std::string Player::InputName(string Name)
 {
     //조건이 아니라면
@@ -114,10 +116,14 @@ void Player::useItem()
 
     for (int i = 0; i < inventory.size(); i++)
     {
-        if (input == 1 && dynamic_cast<HealthPotion*>(inventory[i])) {
-            selectedItem = inventory[i];
-            index = i;
-            break;
+        if(health <= MaxHealth)
+        { 
+
+            if (input == 1 && dynamic_cast<HealthPotion*>(inventory[i])) {
+                selectedItem = inventory[i];
+                index = i;
+                break;
+            }          
         }
         else if (input == 2 && dynamic_cast<AttackBoost*>(inventory[i])) {
             selectedItem = inventory[i];
@@ -129,6 +135,9 @@ void Player::useItem()
             index = i;
             break;
         }
+        else if (input == 0) {
+            return;
+        }
     }
     if (selectedItem == nullptr) {
         std::cout << "해당 아이템이 없습니다." << std::endl;
@@ -138,6 +147,8 @@ void Player::useItem()
     selectedItem->use(*this);
     selectedItem->lossItem();
 
-    //delete selectedItem;
+    
+    delete selectedItem;
     inventory.erase(inventory.begin() + index);
+   
 }

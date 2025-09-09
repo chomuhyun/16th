@@ -1,14 +1,13 @@
 #pragma once
 #include <memory>
 #include "Shop.h"
-class Shop;
 
 class GameManager
 {
 public:
-	GameManager() {}
+	GameManager() : player(), shop(player) {}
 	~GameManager() {}
-
+	
 	string nickname;
 	void GameStart();
 

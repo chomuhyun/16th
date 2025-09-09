@@ -30,7 +30,7 @@ public: // 멤버함수
 	void levelUp();
 	void useItem(); // 아이템 사용
 	void displayStatus(); // 캐릭터 스테이터스 창
-	std::string InputName(string Name);
+	//std::string InputName(string Name);
 
 private: // 멤버변수
 

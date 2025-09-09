@@ -25,7 +25,7 @@ void GameManager::GameStart()
 	cout << "\n" << endl;
 	cout << " 케릭터 이름 : " << player.getCharacterName() <<"\n" << endl;
 	cout << " =======================================\n" << endl;
-	cout << " 환영합니다! " << player.getCharacterName() << " 님! 원하는 선택지를 고르세요 !" << endl;
+	cout << " 환영합니다! " << player.getCharacterName() << " 님! 모험이 시작됩니다 !\n" << endl;
 	cout << " =======================================\n" << endl;
 	selectAction();
 }
@@ -77,14 +77,12 @@ void GameManager::visitShop()
 	system("cls");
 	cout << " ==========상점에 오신것을 환영합니다!==========\n" << endl;
 	shop.displayitem();
+	system("cls");
 	selectAction();
-	//상점으로 넘어왔고 물품리스트 를 불러오고 이름과 가격을 출력해야함
-	//출력창에서 구매, 판매 로 넘어가야 되고 구매 판매기능이 끝나면 인벤토리 확인 및 상점 나가기가 되어야함
 }
 
 void GameManager::displayInventory()
 {
-
 	cout << " ============Inventory=============\n" << endl;
 	auto& inv = player.Getinv();
 	if (inv.empty()) 
@@ -99,17 +97,14 @@ void GameManager::displayInventory()
 	cout << " ============Inventory=============\n" << endl;
 	cout << "\n" << endl;
 	cout << " 나가기 - 3.\n" << endl;
-	int displayinv; //키보드 i 를 눌럿을때로 하고 싶지만 일단 숫자로...
+	
+	int displayinv;
 	cin >> displayinv;
 	if (displayinv == 3)
 	{
 		system("cls");
 		selectAction();
 	}
-
-	//인벤토리창을 닫는 기능이 필요함 창을 닫으면 전투를 할지 상점을 갈지 선택할수있어야함 
-	// i 버튼을 누르면 인벤토리 창이 뜰수 있게해야하는데 인벤토리 배열과,
-	// 그 아이템을 나열하는 출력창이 필요함
 }
 
 void GameManager::generateMonster()

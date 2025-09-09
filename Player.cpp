@@ -19,15 +19,6 @@ Player::Player(std::string name)
 
 }
 
-
-Player::~Player() // 소멸자 , 메모리 비우기 cpp
-{
-    for (Item* item : inv)
-    {
-        delete item;
-    }
-}
-
 /*std::string Player::InputName(string Name)
 {
     //조건이 아니라면
@@ -138,17 +129,15 @@ void Player::useItem()
             index = i;
             break;
         }
-
-        if (selectedItem == nullptr) {
-            std::cout << "해당 아이템이 없습니다." << std::endl;
-            return;
-        }
     }
-
+    if (selectedItem == nullptr) {
+        std::cout << "해당 아이템이 없습니다." << std::endl;
+        return;
+    }
 
     selectedItem->use(*this);
     selectedItem->lossItem();
 
-    delete selectedItem;
+    //delete selectedItem;
     inventory.erase(inventory.begin() + index);
 }

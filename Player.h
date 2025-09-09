@@ -8,9 +8,7 @@ class Item; // 전방선언
 class Player
 {
 public: // 멤버함수
-	Player() {}
 	Player(std::string name);// 생성자
-
 	~Player();  // 소멸자
 
 	//getter

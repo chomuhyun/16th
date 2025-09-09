@@ -32,7 +32,7 @@ void GameManager::GameStart()
    
 void GameManager::selectAction() 
 {
-	HealthPotion hp("체력포션",50, 1, 10);
+	HealthPotion hp("체력 포션",50, 1, 10);
 	AttackBoost ab("공격력 증가 포션" , 50, 1, 20);
 	ExperienceBoost exp("경험치 증가 포션" ,50, 1, 30);
 	int selectaction;
@@ -87,7 +87,8 @@ void GameManager::displayInventory()
 
 	cout << " ============Inventory=============\n" << endl;
 	auto& inv = player.Getinv();
-	if (inv.empty()) {
+	if (inv.empty()) 
+	{
 		cout << " 인벤토리가 비어 있습니다.\n" << endl;
 	}
 	else {

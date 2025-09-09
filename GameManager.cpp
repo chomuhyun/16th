@@ -9,6 +9,8 @@
 
 using namespace std;
 
+
+
 void GameManager::GameStart()
 {
 	string NickName;
@@ -19,10 +21,11 @@ void GameManager::GameStart()
 	cout << " 케릭터 생성을 위해 이름을 입력해주세요!\n" << endl;
 	cout << " >>>";
 	cin >> NickName;
+	player = Player(NickName);
 	cout << "\n" << endl;
-	cout << " 케릭터 이름 : " << NickName <<"\n" << endl;
+	cout << " 케릭터 이름 : " << player.getCharacterName() <<"\n" << endl;
 	cout << " =======================================\n" << endl;
-	cout << " 환영합니다! " << NickName << " 님! 원하는 선택지를 고르세요 !" << endl;
+	cout << " 환영합니다! " << player.getCharacterName() << " 님! 원하는 선택지를 고르세요 !" << endl;
 	cout << " =======================================\n" << endl;
 	selectAction();
 }
@@ -40,7 +43,7 @@ void GameManager::selectAction()
 	{
 	case 1:
 		system("cls");
-		battle();
+		//monster.TurnBattle();
 		break;
 	case 2:
 		system("cls");
@@ -60,6 +63,8 @@ void GameManager::selectAction()
 		Inventory inv;
 		inv.PrintCurrentItemAndGold(player, hp, ab, exp);
 		player.useItem();
+		player.displayStatus();
+		selectAction();
 	}
 		break;
 	default:
@@ -72,21 +77,22 @@ void GameManager::visitShop()
 	system("cls");
 	cout << " ==========상점에 오신것을 환영합니다!==========\n" << endl;
 	shop.displayitem();
+	selectAction();
 	//상점으로 넘어왔고 물품리스트 를 불러오고 이름과 가격을 출력해야함
 	//출력창에서 구매, 판매 로 넘어가야 되고 구매 판매기능이 끝나면 인벤토리 확인 및 상점 나가기가 되어야함
 }
 
 void GameManager::displayInventory()
 {
+
 	cout << " ============Inventory=============\n" << endl;
 	auto& inv = player.Getinv();
-	//auto& shopinv = shop.
 	if (inv.empty()) {
 		cout << " 인벤토리가 비어 있습니다.\n" << endl;
 	}
 	else {
 		for (size_t i = 0; i < inv.size(); ++i) {
-			cout << i + 1 << ". " << inv[i]->getName() << endl; //" (가격: " << inv[i]->getPrice() << ")\n";
+			cout << i + 1 << ".  아이템 이름 : " << inv[i]->getName() << " \n아이템 개수 : " << inv[i]->getCount() << " 개 \n" << endl;
 		}
 	}
 	cout << " ============Inventory=============\n" << endl;

@@ -19,9 +19,9 @@ class HealthPotion : public Item {
 private:
 	std::string name; // 아이템 이름 (ex: 빨간 포션)
 	int healthRestore; // 회복량 (ex: 체력+50)
-	int numberofHealthPotion = 0; // 회복포션 개수 
+	int numberofHealthPotion = 1; // 회복포션 개수 1개 초기값
 public:
-	HealthPotion(std::string n, int Restore); //생성자: 이름(n), 회복량(Restore)
+	HealthPotion(std::string n, int Restore, int Numberof); //생성자: 이름(n), 회복량(Restore), 수량(Numberof)
 	std::string getName() override; //부모클래스 getName(아이템 이름 반환) 받아와 구현
 	void use(Player& player) override; //부모클래스(포션 사용) 받아와 구현
 	int gainItem() override; //부모클래스(포션 개수 증가) 받아와 구현
@@ -33,9 +33,9 @@ class AttackBoost : public Item {
 private:
 	std::string name; // 아이템 이름 (ex: 파워 부스트)
 	int attackIncrease; // 증가량 (ex: 공격력+10)
-	int numberofAttackBoost =0; // 공격 부스트 개수
+	int numberofAttackBoost = 1; // 공격 부스트 개수 1개 초기값
 public:
-	AttackBoost(std::string n, int Increase); //생성자: 이름(n), 증가량(Increase)
+	AttackBoost(std::string n, int Increase, int Numberof); //생성자: 이름(n), 증가량(Increase), 수량(Numberof)
 	std::string getName() override; //부모클래스 getName(아이템 이름 반환) 받아와 구현
 	void use(Player& player) override; //부모클래스(포션 사용) 받아와 구현
 	int gainItem() override; //부모클래스(포션 개수 증가) 받아와 구현
@@ -47,9 +47,9 @@ class ExperienceBoost : public Item {
 private:
 	std::string name; // 아이템 이름 (ex: 경험치 부스트)
 	int experienceIncrease; // 증가량 (ex: 경험치+20)
-	int numberofExperienceBoost =0; // 경험치 부스트 개수
+	int numberofExperienceBoost =1; // 경험치 부스트 개수 1개 초기값
 public:
-	ExperienceBoost(std::string n, int Increase); //생성자: 이름(n), 증가량(Increase)
+	ExperienceBoost(std::string n, int Increase, int Numberof); //생성자: 이름(n), 증가량(Increase), 수량(Numberof)
 	std::string getName() override; //부모클래스 getName(아이템 이름 반환) 받아와 구현
 	void use(Player& player) override; //부모클래스(포션 사용) 받아와 구현
 	int gainItem() override; //부모클래스(포션 개수 증가) 받아와 구현

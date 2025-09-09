@@ -10,9 +10,6 @@ using namespace std;
 
 class Item;
 
-Player player;
-
-int Shopmenu;
 
 Shop::Shop(Player& p)
     : player(p)
@@ -222,7 +219,6 @@ void Shop::sellitem()
         double total = ((a.getPrice() * itemsell) * 0.6);
         player.setGold(player.getGold() + total);
         std::cout << "[현재 골드 : " << player.getGold() << "G]" << std::endl;
-        std::cout << "[남은 골드 : " << player.getGold() << "G]" << std::endl;
         for (int i = 0, erased = 0; i < player.Getinv().size() && erased < itemsell; )
         {//해당 타입의 아이템을 판매 수량만큼 삭제하는 코드
             Item* item = player.Getinv()[i];
@@ -249,7 +245,6 @@ void Shop::sellitem()
         double total = ((e.getPrice() * itemsell) * 0.6);
         player.setGold(player.getGold() + total);
         std::cout << "[현재 골드 : " << player.getGold() << "G]" << std::endl;
-        std::cout << "[남은 골드 : " << player.getGold() << "G]" << std::endl;
         for (int i = 0, erased = 0; i < player.Getinv().size() && erased < itemsell; )
         {
             Item* item = player.Getinv()[i];
@@ -277,6 +272,7 @@ void Shop::sellitem()
         break;
     }
 };
+
 void Shop::displayitem()
 {
     int Shopmenu;

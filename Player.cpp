@@ -9,7 +9,6 @@
 
 using namespace std;
 
-
 Player::Player(std::string name)
     : name(name), level(1), health(200), MaxHealth(200), gold(100), attack(30), experience(0), inv()
 {
@@ -18,8 +17,6 @@ Player::Player(std::string name)
     inv.push_back(new ExperienceBoost("경험치 증가 포션", 20, 1, 30));
 
 }
-
-
 
 /*std::string Player::InputName(string Name)
 {
@@ -35,7 +32,6 @@ Player::Player(std::string name)
 */
 
 //Setter 함수
-
 void Player::setAttack(int atk)
 {
     attack = atk;
@@ -46,12 +42,10 @@ void Player::setGold(int coin)
     gold = coin;
 }
 
-
 void Player::setHealth(int hp)
 {
     health = hp;
 }
-
 
 void Player::displayStatus()
 {
@@ -69,7 +63,6 @@ void Player::displayStatus()
     cout << " \n" << endl;
 
 }
-
 
 void Player::levelUp() // 레벨업시 체력 풀 회복
 {
@@ -105,7 +98,6 @@ void Player::addExperience(int amount) // 경험치
 
 void Player::useItem()
 {
-
     int input;
     std::cin >> input;
 
@@ -116,15 +108,12 @@ void Player::useItem()
 
     for (int i = 0; i < inventory.size(); i++)
     {
-        if(health <= MaxHealth)
-        { 
-
-            if (input == 1 && dynamic_cast<HealthPotion*>(inventory[i])) {
-                selectedItem = inventory[i];
-                index = i;
-                break;
-            }          
-        }
+         if (input == 1 && dynamic_cast<HealthPotion*>(inventory[i])) {
+             selectedItem = inventory[i];
+             index = i;
+             break;
+         }          
+        
         else if (input == 2 && dynamic_cast<AttackBoost*>(inventory[i])) {
             selectedItem = inventory[i];
             index = i;
@@ -139,7 +128,8 @@ void Player::useItem()
             return;
         }
     }
-    if (selectedItem == nullptr) {
+    
+    if (selectedItem == nullptr && input != 0) {
         std::cout << "해당 아이템이 없습니다." << std::endl;
         return;
     }
@@ -147,8 +137,7 @@ void Player::useItem()
     selectedItem->use(*this);
     selectedItem->lossItem();
 
-    
     delete selectedItem;
     inventory.erase(inventory.begin() + index);
-   
+ 
 }

@@ -73,22 +73,3 @@ public:
 
 	void PrintCurrentItemAndGold(Player& player, HealthPotion& hp, AttackBoost& ab, ExperienceBoost& exp); // 현재 아이템 개수 및 골드 출력 선언
 };
-
-
-//게임 자체의 시뮬레이션이 돌아가야함
-//* 전투에서 승리했다면 골드를 얻고 확률적으로 아이템을 습득함 - 수정,효정,다훈,병관
-//* 몬스터는 죽었다로 판정이 되면 확률에 따라 상점에서 판매하는 아이템을 드랍할 수 있어야 함 - 다훈, 병관
-//* 상점에 아이템은 언제든지 늘어날수 있고, 아이템에 객체를 언제든지 생성시킬수있어야한다 - 병관, 승원
-//* 케릭터가 아이템을 사용했을때 아이템이 부여하는 속성에 따라 스텟이 변해야함 - 병관,효정,수정 --> (0)
-
-/*class Item {
-protected:
-	string name;
-	int price;
-public:
-	Item(string n, int p) : name(n), price(p) {}
-	virtual ~Item() {}
-
-	string getName() const { return name; }
-	int getPrice() const { return price; }
-}; */

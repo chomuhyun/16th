@@ -1,21 +1,31 @@
 #pragma once
 #include <memory>
+#include "Shop.h"
+class Shop;
 
 class GameManager
 {
 public:
-	void selectAction() {}
+	GameManager() {}
+	~GameManager() {}
 
-	void visitShop() {}
+	string nickname;
+	void GameStart();
 
-	void displayInventory() {}
+	void selectAction();
 
-	void generateMonster() {}
+	void visitShop();
 
-	void battle() {}
+	void displayInventory();
 
-	void generateBossMonster() {}
+	void generateMonster();
+
+	void battle();
+
+	void generateBossMonster();
 private:
+	
 	Player player;
-	unique_ptr<Monster> nearbyMonster;
+	Shop shop;
+	//unique_ptr<Monster> nearbyMonster;
 };

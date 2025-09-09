@@ -69,8 +69,8 @@ public:
 
 //승리의 경우 - 
 
-bool isMDead() const { return m_hp = 0; }      // 판정 함수 // 
-bool getMIsDead() const { return isMDead(); }  // get 스타일 래퍼
+//bool isMDead() const { return m_hp = 0; }      // 판정 함수 // 
+//bool getMIsDead() const { return isMDead(); }  // get 스타일 래퍼
 
 
 // === 턴제 전투 유틸 (선언) ===

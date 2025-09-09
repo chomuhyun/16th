@@ -17,6 +17,7 @@ public: // 멤버함수
 	int getAttack() { return attack; } // 공격
 	int getGold() {	return gold;} //골드
 	int getHealth() { return health; } //체력
+	int getMaxHealth() { return MaxHealth; }
 	int getExperience() { return experience; } // 경험치
 	std::string getCharacterName() { return name; } // 캐릭터 닉네임 
 	std::vector<Item*>& Getinv() { return inv; } // 인벤토리 접근
@@ -38,7 +39,7 @@ private: // 멤버변수
 	std::string name;
 	int level;
 	int health;
-	int MaxHealth;
+	int MaxHealth = 200;
 	int attack;
 	int gold;
 	int experience;

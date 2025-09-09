@@ -17,6 +17,7 @@ void GameManager::GameStart()
 	cout << " =======================================\n" << endl;
 	cout << "\n" << endl;
 	cout << " 케릭터 생성을 위해 이름을 입력해주세요!\n" << endl;
+	cout << " >>>";
 	cin >> NickName;
 	cout << "\n" << endl;
 	cout << " 케릭터 이름 : " << NickName <<"\n" << endl;
@@ -28,6 +29,9 @@ void GameManager::GameStart()
    
 void GameManager::selectAction() 
 {
+	HealthPotion hp("체력포션",50, 1, 10);
+	AttackBoost ab("공격력 증가 포션" , 50, 1, 20);
+	ExperienceBoost exp("경험치 증가 포션" ,50, 1, 30);
 	int selectaction;
 	cout << " ==============원하시는 선택지를 골라주세요==============\n" << endl;
 	cout << " 전투 - 1.\n 상점 - 2.\n 가방 확인 - 3.\n 스텟 관리 - 4.\n" << endl;
@@ -47,11 +51,16 @@ void GameManager::selectAction()
 		displayInventory();
 		break;
 	case 4:
+	{
 		system("cls");
-		cout << "==============원하시는 선택지를 골라주세요==============\n" << endl;
-		//inventory.PrintCurrentItemAndGold()
+		cout << " ==============원하시는 선택지를 골라주세요==============\n" << endl;
 		cout << " 체력 포션 - 1.\n 공격력 증가 포션 - 2.\n 경험치 포션 - 3.\n 나가기 - 0.\n" << endl;
+		cout << " ========================================================" << endl;
+		cout << " 현재 보유 포션 목록 \n" << endl;
+		Inventory inv;
+		inv.PrintCurrentItemAndGold(player, hp, ab, exp);
 		player.useItem();
+	}
 		break;
 	default:
 		break;

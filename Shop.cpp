@@ -28,7 +28,7 @@ Shop::~Shop() {
 
 void Shop::buyitem()
 {
-    
+
     int itemselect = 0; //아이템 선택
     int itembuy = 0; //아이템 구매 수량
     std::cout << "==============================" << std::endl;
@@ -41,8 +41,8 @@ void Shop::buyitem()
     
     switch (itemselect)
     {
-        case 1:
-        {
+    case 1:
+    {
         HealthPotion h("체력 포션", 50, 1, 10);
         std::cout << "체력 포션을 선택하셨습니다. 몇개 구매하시겠습니까?" << std::endl;
         std::cout << " 구매할 갯수 >>> ";
@@ -72,18 +72,16 @@ void Shop::buyitem()
                     break;
                 }
             }
-
             if (!found)
             {
                 HealthPotion* newPotion = new HealthPotion("체력 포션", 50, itembuy, 10);
                 player.Getinv().push_back(newPotion);
             }
-}
-
-        break;
         }
-        case 2:
-        {
+        break;
+    }
+    case 2:
+    {
         AttackBoost a("공격력 증가 포션", 10, 1, 20);
         std::cout << "공격력 강화를 선택하셨습니다. 몇개 구매하시겠습니까?" << std::endl;
         std::cout << " 구매할 갯수 >>> ";
@@ -113,10 +111,11 @@ void Shop::buyitem()
                     break;
                 }
             }
-        break;   
+            break;
         }
-        case 3:
-        {
+    }
+    case 3:
+    {
         ExperienceBoost e("경험치 증가 포션", 20, 1, 30);
         std::cout << "경험치 강화를 선택하셨습니다. 몇개 구매하시겠습니까?" << std::endl;
         std::cout << " 구매할 갯수 >>> ";
@@ -146,19 +145,21 @@ void Shop::buyitem()
                     break;
                 }
             }
-        break;
+            break;
         }
-        case 4:
-        {
+    }
+    case 4:
+    {
         system("cls");
         std::cout << "메뉴 선택으로 돌아갑니다." << endl;
         displayitem();
-        }
-        default:
-        std::cout << "잘못된 선택입니다. 다시 선택해주세요." << std::endl;
+    }
+    default:
         break;
     }
-};
+}
+    
+ 
 
 void Shop::sellitem()
 {

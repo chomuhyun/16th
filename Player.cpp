@@ -39,6 +39,32 @@ void Player::addExperience(int amount)
 	cout << amount << "경험치를 획득했습니다! 현재 경험치:" << experience << endl;
 }
 
+
+void Player::Battle(bool b)// 이겼을때
+{
+    while (b) // b가 true 라면 (승리시)
+    {
+        int win = ((몬스터 레벨) / level) * 10;
+
+        experience += win; //경험치
+
+        break;
+    }
+
+    int a = (몬스터 레벨 + level) % 2; // 골드
+
+    if (a >= 5) // true , false
+    {
+        gold += 10;
+    }
+    else
+    {
+        gold += 20;
+    }
+
+}
+
+
 void Player::levelUp() // 레벨업시 체력 풀 회복
 {
 	MaxHealth += (level * 20);  // 레벨에 20곱한 값만큼 최대체력증가
@@ -68,9 +94,17 @@ void Player::setHealth(int hp)
 }
 
 
-void Player::setHealth(int hp)
+void Player::ViewInventory() 
 {
-    health = hp;
+
+    for (const auto& item : Getinv())
+    {
+        
+        cout << item->getName() << " "<< item.getCount() << "개"<< endl;
+
+    }
+
+
 }
 
 

@@ -47,11 +47,16 @@ void GameManager::selectAction()
 		displayInventory();
 		break;
 	case 4:
+	{
 		system("cls");
-		cout << "==============원하시는 선택지를 골라주세요==============\n" << endl;
-		//inventory.PrintCurrentItemAndGold()
+		cout << " ==============원하시는 선택지를 골라주세요==============\n" << endl;
 		cout << " 체력 포션 - 1.\n 공격력 증가 포션 - 2.\n 경험치 포션 - 3.\n 나가기 - 0.\n" << endl;
+		cout << " ========================================================" << endl;
+		cout << " 현재 보유 포션 목록 \n" << endl;
+		Inventory inv;
+		//inv.PrintCurrentItemAndGold(Player & player, HealthPotion & hp, AttackBoost & ab, ExperienceBoost & exp);
 		player.useItem();
+	}
 		break;
 	default:
 		break;

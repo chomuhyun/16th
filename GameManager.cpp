@@ -31,10 +31,7 @@ void GameManager::GameStart()
 }
    
 void GameManager::selectAction() 
-{
-	HealthPotion hp("체력 포션",50, 1, 10);
-	AttackBoost ab("공격력 증가 포션" , 50, 1, 20);
-	ExperienceBoost exp("경험치 증가 포션" ,50, 1, 30);
+{   
 	int selectaction;
 	cout << " ==============원하시는 선택지를 골라주세요==============\n" << endl;
 	cout << " 전투 - 1.\n 상점 - 2.\n 가방 확인 - 3.\n 스텟 관리 - 4.\n" << endl;
@@ -61,7 +58,7 @@ void GameManager::selectAction()
 		cout << " ========================================================" << endl;
 		cout << " 현재 보유 포션 목록 \n" << endl;
 		Inventory inv;
-		inv.PrintCurrentItemAndGold(player, hp, ab, exp);
+		inv.PrintCurrentItemAndGold(player);
 		player.useItem();
 		player.displayStatus();
 		selectAction();

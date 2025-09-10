@@ -31,7 +31,7 @@ public: // 멤버함수
 	void levelUp();
 	void useItem(); // 아이템 사용
 	void displayStatus(); // 캐릭터 스테이터스 창
-	bool battle();//전투 승리시 골드획득 로직에 사용하는 함수
+	void battle();//전투 승리시 골드획득 로직에 사용하는 함수
 	//std::string InputName(string Name);
 
 private: // 멤버변수

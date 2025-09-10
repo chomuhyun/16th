@@ -70,7 +70,12 @@ void GameManager::selectAction()
 		selectAction();
 	}
 	case 5:
-		
+		system("cls");
+		player.bossBattle();
+		cout << "\n" << endl;
+		system("pause");
+		system("cls");
+		selectAction();
 		break;
 	case 6:
 		return;

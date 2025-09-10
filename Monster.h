@@ -33,7 +33,7 @@ public:
 	bool getMIsDead() const; 
 	
 	void show() { 
-		cout << "[ " << getName() << " ] " << "LV:" << getLV() << " HP:" << getHP() << " /ATK:" << getATK() << endl;
+		cout << " [ " << getName() << " ] " << "LV:" << getLV() << " HP:" << getHP() << " /ATK:" << getATK()<< "\n" << endl;
 	} 
 }; 
 
@@ -45,23 +45,23 @@ public:
 }; 
 class Orc : public Monster { 
 public: 
-	Orc(int lv) : Monster("Orc", 20 + lv * 20, 20 * lv) { m_lv = lv; } 
+	Orc(int lv) : Monster("Orc", 20 + lv * 20, 15 * lv) { m_lv = lv; } 
 	void roar() override { cout << "Orc: 취익!" << endl; } 
 }; 
 class Troll : public Monster { 
 public: 
-	Troll(int lv) : Monster("Troll", 30 + lv * 30, 30 * lv) { m_lv = lv; } 
+	Troll(int lv) : Monster("Troll", 30 + lv * 30, 20 * lv) { m_lv = lv; } 
 	void roar() override { cout << "Troll: 쿠워어!" << endl; }
 }; 
 class Slime : public Monster { 
 public: 
-	Slime(int lv) : Monster("Slime", 40 + lv * 40, 40 * lv) { m_lv = lv; } 
+	Slime(int lv) : Monster("Slime", 40 + lv * 40, 30 * lv) { m_lv = lv; } 
 	void roar() override { cout << "Slime: 탱글" << endl; } 
 };
 class Invisible_Dragon : public Monster {
 public:
-	Invisible_Dragon(int lv) : Monster("Invisible_Dragon", 40 + lv * 40, 40 * lv) { m_lv = lv; }
-	void roar() override { cout << "Invisible_Dragon: 투명드래곤은 존나게 쎘다" << endl; }
+	Invisible_Dragon(int lv) : Monster("Invisible_Dragon", 65 + lv * 65, 30 * lv) { m_lv = lv; }
+	void roar() override { cout << "Invisible_Dragon: 투명드래곤은 아주 강력하다 " << endl; }
 };
 
 // === 턴제 전투 유틸 (전역 선언) ===

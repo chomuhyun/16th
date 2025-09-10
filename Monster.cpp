@@ -60,18 +60,18 @@ bool TurnBattle(int& hp, int atk, int lv, const std::string& playerName) {
 
     while (hp > 0 && !mon->isMDead()) {
         if (playerTurn) {
-            std::cout << "[플레이어 턴] 공격! 피해 " << atk << "\n\n";
+            std::cout << " [플레이어 턴] 공격!피해 " << atk << "\n\n";
             mon->takeDamage(atk);
         }
         else {
             int dmg = mon->attack();
             if (dmg < 0) dmg = 0;
             hp -= dmg; if (hp < 0) hp = 0;
-            std::cout << "[몬스터 턴] " << mon->getName()
+            std::cout << " [몬스터 턴] " << mon->getName()
                 << " 의 공격! 플레이어가 " << dmg << " 피해\n\n";
         }
 
-        std::cout << "상태 | 플레이어 HP=" << hp
+        std::cout << " 상태 | 플레이어 HP=" << hp
             << " | " << mon->getName() << " HP=" << mon->getHP() << "\n\n";
 
         playerTurn = !playerTurn;
@@ -80,10 +80,10 @@ bool TurnBattle(int& hp, int atk, int lv, const std::string& playerName) {
     bool win = (hp > 0);
 
     if (win) {
-        std::cout << "\n" << playerName << " 승리! " << mon->getName() << " 처치\n\n";
+        std::cout << "\n " << playerName << " 승리! " << mon->getName() << " 처치\n\n";
     }
     else {
-        std::cout << "\n" << playerName << " 패배...\n\n";
+        std::cout << "\n " << playerName << " 패배...\n\n";
     }
 
     delete mon; //동적할당해제
@@ -103,36 +103,36 @@ bool BossBattleFromPlayer(Player& p) {
 bool BossBattle(int& hp, int atk, int lv, const std::string& playerName) {
     Invisible_Dragon* boss = new Invisible_Dragon(lv);
 
-    std::cout << "\n=== 보스 등장: " << boss->getName() << " ===\n\n";
+    std::cout << "\n === 보스 등장: " << boss->getName() << " ===\n\n";
     boss->show();
 
     bool playerTurn = true;  // 플레이어 선공
 
     while (hp > 0 && !boss->isMDead()) {
         if (playerTurn) {
-            std::cout << "[플레이어 턴] 보스에게 " << atk << " 피해\n\n";
+            std::cout << " [플레이어 턴] 보스에게 " << atk << " 피해\n\n";
             boss->takeDamage(atk);
         }
         else {
             int dmg = boss->attack();
             if (dmg < 0) dmg = 0;
             hp -= dmg; if (hp < 0) hp = 0;
-            std::cout << "[보스 턴] " << boss->getName()
+            std::cout << " [보스 턴] " << boss->getName()
                 << "의 공격! 플레이어가 " << dmg << " 피해\n\n";
         }
 
-        std::cout << "상태 | 플레이어 HP=" << hp
-            << boss->getName() << "HP=" << boss->getHP() << "\n\n";
+        std::cout << " 상태 | 플레이어 HP = " << hp << " / " << boss->getName() << " HP = " << boss->getHP() << "\n\n";
+           
 
         playerTurn = !playerTurn;
     }
 
     bool wintoboss = (hp > 0);
     if (wintoboss){ 
-        std::cout << "\n" << playerName << "는" << boss->getName() << " 에게서 승리했다 " << "\n\n"; 
+        std::cout << "\n " << playerName << " 는 " << boss->getName() << " 에게서 승리했다 " << "\n\n"; 
     }
     else{
-        std::cout << "\n" << playerName << "는" << boss->getName() << " 에게서 처참하게 패배했다 " << "\n\n";
+        std::cout << "\n " << playerName << " 는 " << boss->getName() << " 에게서 처참하게 패배했다 " << "\n\n";
     }
 
     delete boss;

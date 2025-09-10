@@ -18,18 +18,6 @@ Player::Player(std::string name)
 
 }
 
-/*std::string Player::InputName(string Name)
-{
-    //조건이 아니라면
-    while (Name.empty())
-    {
-        cout << "공백은 입력할 수 없습니다. 다시 입력해주세요!" << endl;
-    }
-    //조건에 맞다면
-    name = Name;
-    return name;
-}
-*/
 
 //Setter 함수
 void Player::setAttack(int atk)
@@ -98,18 +86,18 @@ void Player::addExperience(int amount) // 경험치
 
 void Player::bossBattle()
 {
-    bool win = TurnBattleFromPlayer(*this); //승패 결과 bool받아옴
+    bool winBoss = BossBattleFromPlayer(*this); //승패 결과 bool받아옴
 
-    if (win)
+    if (winBoss)
     {
-        int rewardGold = (rand() % 2 == 0) ? 10 : 20; //rand = 0 이상 임의 정수(난수) 조건 비교 참10 : 거짓20
-        int rewardExp = rand() % 30;
+        int rewardGold = (rand() % 2 == 0) ? 70 : 100; //rand = 0 이상 임의 정수(난수) 조건 비교 참10 : 거짓20
+        int rewardExp = rand() % 50;
         gold += rewardGold;
         addExperience(rewardExp);
         cout << " 보상 획득! + " << rewardGold << " 골드, + " << rewardExp << " 경험치 [현재 골드" << gold << "]\n" << endl;
 
         int drop = rand() % 100; // 정수로 rand = (0~99) 1/100 = 1%
-        if (drop < 30)  // 30가지로 즉 30%
+        if (drop < 50)  // 30가지로 즉 30%
         {
             int item = rand() % 3;   // 0, 1, 2 중 하나 뽑음
 

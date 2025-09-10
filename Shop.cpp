@@ -176,7 +176,7 @@ void Shop::sellitem()
     int itemsell = 0; //아이템 판매 수량
     std::cout << " ==============================" << std::endl;
     std::cout << " II 무엇을 판매하시겠습니까? II" << std::endl;
-    std::cout << " II  1. 체력 포션            II\n II  2. 공격력 강화 포션     II\n II  3. 경험치 강화 포션     II\n II  4. 뒤로 가기            II" << std::endl;
+    std::cout << " II  1. 체력 포션            II\n II  2. 공격력 증가 포션     II\n II  3. 경험치 증가 포션     II\n II  4. 뒤로 가기            II" << std::endl;
     std::cout << " ==============================" << std::endl;
     std::cout << " [현재 골드 : " << player.getGold() << "G]" << std::endl;
     std::cout << "  >>> ";

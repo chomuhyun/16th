@@ -37,14 +37,15 @@ bool TurnBattleFromPlayer(Player& p) {
     int hp = p.getHealth();
     int atk = p.getAttack();
     int lv = p.getLevel();
-    
-    bool win = TurnBattle(hp, atk, lv);  // ← 전투 결과
-    p.setHealth(hp);                      // 전투 후 HP 반영
+    std::string pname = p.getCharacterName();   
+
+    bool win = TurnBattle(hp, atk, lv, pname);  // ← 플레이어 이름 전달
+    p.setHealth(hp);
     return win;
 }
 
 // 턴제 전투 (플레이어 변수명: hp/atk/lv)
-bool TurnBattle(int& hp, int atk, int lv) {
+bool TurnBattle(int& hp, int atk, int lv, const std::string& playerName) {
     // 플레이어 lv의 0.7~1.3배 정수 범위
     int minLv = (7 * lv) / 10;                if (minLv < 1) minLv = 1;
     int maxLv = (13 * lv + 9) / 10;           if (maxLv < minLv) maxLv = minLv;
@@ -52,14 +53,14 @@ bool TurnBattle(int& hp, int atk, int lv) {
 
     Monster* mon = SpawnByIndex((hp + atk) % 4, monLv);
 
-    std::cout << "\n=== 야생의 " << mon->getName() << " 이(가) 나타났다! ===\n";
+    std::cout << "\n\n=== 야생의 " << mon->getName() << " 이(가) 나타났다! ===\n\n";
     mon->show();
 
     bool playerTurn = true; // 플레이어 선공
 
     while (hp > 0 && !mon->isMDead()) {
         if (playerTurn) {
-            std::cout << "[플레이어 턴] 공격! 피해 " << atk << "\n";
+            std::cout << "[플레이어 턴] 공격! 피해 " << atk << "\n\n";
             mon->takeDamage(atk);
         }
         else {
@@ -67,23 +68,23 @@ bool TurnBattle(int& hp, int atk, int lv) {
             if (dmg < 0) dmg = 0;
             hp -= dmg; if (hp < 0) hp = 0;
             std::cout << "[몬스터 턴] " << mon->getName()
-                << " 의 공격! 플레이어가 " << dmg << " 피해\n";
+                << " 의 공격! 플레이어가 " << dmg << " 피해\n\n";
         }
 
         std::cout << "상태 | 플레이어 HP=" << hp
-            << " | " << mon->getName() << " HP=" << mon->getHP() << "\n";
+            << " | " << mon->getName() << " HP=" << mon->getHP() << "\n\n";
 
         playerTurn = !playerTurn;
     }
 
-    bool win = (hp > 0);  // 루프가 끝났는데 내가 살아 있으면 = 몬스터 처치
+    bool win = (hp > 0);
     if (win) {
-        std::cout << mon->getName() << " 승리\n";
+        std::cout << playerName << " 승리! " << mon->getName() << " 처치\n\n";
     }
     else {
-        std::cout << "패배\n";
+        std::cout << playerName << " 패배...\n\n";
     }
 
-    delete mon; // 동적 할당 정리
+    delete mon; //동적할당해제
     return win;
 }

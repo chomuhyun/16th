@@ -96,6 +96,18 @@ void Player::addExperience(int amount) // °æÇèÄ¡
     }
 }
 
+string Player::battle() // ÀüÅõ ½Â¸®½Ã °ñµå 50È¹µæ
+{
+    TurnBattleFromPlayer(*this);
+     
+    bool win;
+    setGold(getGold() + 50);
+
+    cout << "º¸»ó È¹µæ! 50°ñµå°¡ Áö±ŞµÇ¾ú½À´Ï´Ù!" << endl;
+    return 0;
+}
+
+
 void Player::useItem()
 {
     int input;

@@ -96,18 +96,92 @@ void Player::addExperience(int amount) // 경험치
     }
 }
 
-bool Player::battle()  // 전투 승리시 골드 50획득
+void Player::battle()  // 전투 승리시 골드 50획득
 {
     bool win = TurnBattleFromPlayer(*this); //승패 결과 bool받아옴
 
        if (win) 
-     {
-        int rewardGold = (rand() % 2 == 0) ? 10 : 20; //rand = 0 이상 임의 정수(난수) 조건 비교 참10 : 거짓20
-        addExperience(50);
-        gold += rewardGold;
-        cout << "보상 획득! 현재 골드: " << gold << endl;
-     }
-       return win;
+       {
+       int rewardGold = (rand() % 2 == 0) ? 10 : 20; //rand = 0 이상 임의 정수(난수) 조건 비교 참10 : 거짓20
+       addExperience(50);
+       gold += rewardGold;
+       cout << " 보상 획득! + "<< rewardGold <<" 골드, +50 경험치 "<< "현재 골드\n" << gold << endl;
+
+       int drop = rand() % 100; // 정수로 rand = (0~99) 1/100 = 1%
+       if (drop < 30)  // 30가지로 즉 30%
+       {
+           int item = rand() % 3;   // 0, 1, 2 중 하나 뽑음
+
+           if (item == 0)
+           {
+               bool found = false;
+               for (auto& item : Getinv())
+               {
+                   if (item->getName() == "체력 포션")
+                   {
+                       for (int i = 0; i < 1; ++i)
+                           item->gainItem();
+                       found = true;
+                       cout << " 체력 포션을 획득했습니다! " << endl;
+                       break;
+                   }
+               }
+               if (!found)
+               {
+                   cout << " 체력 포션을 획득했습니다! " << endl;
+                   HealthPotion* newPotion = new HealthPotion("체력 포션", 50, 1, 10);
+                   Getinv().push_back(newPotion);
+               }
+           }
+           else if (item == 1)
+           {
+               bool found = false;
+               for (auto& item : Getinv())
+               {
+                   if (item->getName() == "공격력 증가 포션")
+                   {
+                       for (int i = 0; i < 1; ++i)
+                           item->gainItem();
+                       found = true;
+                       cout << " 공격력 증가 포션을 획득했습니다! " << endl;
+                       break;
+                   }
+               }
+               if (!found)
+               {
+                   cout << " 공격력 증가 포션을 획득했습니다! " << endl;
+                   AttackBoost* newPotion = new AttackBoost("공격력 증가 포션", 50, 1, 20);
+                   Getinv().push_back(newPotion);
+               }
+           }
+           else
+           {
+               bool found = false;
+               for (auto& item : Getinv())
+               {
+                   if (item->getName() == "경험치 증가 포션")
+                   {
+                       for (int i = 0; i < 1; ++i)
+                           item->gainItem();
+                       found = true;
+                       cout << " 경험치 증가 포션을 획득했습니다! " << endl;
+                       break;
+                   }
+               }
+               if (!found)
+               {
+                   cout << " 경험치 증가 포션을 획득했습니다! " << endl;
+                  ExperienceBoost* newPotion = new ExperienceBoost("경험치 증가 포션", 50, 1, 30);
+                   Getinv().push_back(newPotion);
+               }
+           }
+       }
+       }
+      else
+      {
+         health = MaxHealth / 2;
+         cout << " 플레이어가 사망하였습니다."<< health << " 의 체력 회복 후 마을로 귀환합니다!" << endl;
+      }    
  }
 
 
@@ -117,7 +191,7 @@ void Player::useItem()
     std::cin >> input;
 
     Item* selectedItem = nullptr;
-    int index = 1;
+    int index = -1;
 
     auto& inventory = Getinv();
 
@@ -149,18 +223,22 @@ void Player::useItem()
         return;
     }
 
-    selectedItem->use(*this);
-
-    if (health >= MaxHealth && input == 1 ) //현재체력이 최대 체력보다 크다면 실행
+    if (health >= MaxHealth && input == 1 ) //현재체력이 최대 체력보다 크고, input이 1일때
     {
         std::cout << "체력이 가득 찼습니다! 포션을 사용할 수 없습니다." << endl;
         return;
     }
-    else
+    else 
     {
+        selectedItem->use(*this); //아이템 사용
         selectedItem->lossItem();
+    }
 
-        delete selectedItem;
-        inventory.erase(inventory.begin() + index);
+    if (selectedItem->getCount() <= 0) // 아이템 수량이 0보다 작을때 객체를 지운다
+    {
+        delete selectedItem; //동적 할당된 객체 메모리 해제
+        inventory.erase(inventory.begin() + index); //인벤토리에서 제거
+        return;
     }
 }
+

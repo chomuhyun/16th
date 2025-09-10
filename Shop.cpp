@@ -25,7 +25,7 @@ Shop::~Shop() {
 void Shop::buyitem()
 {
 
-    int itemselect = 0; //아이템 선택
+    int itemselect = 0; //구매할 아이템 선택지
     int itembuy = 0; //아이템 구매 수량
     std::cout << " ==============================" << std::endl;
     std::cout << " II 무엇을 구매하시겠습니까? II" << std::endl;
@@ -33,7 +33,7 @@ void Shop::buyitem()
     std::cout << " ==============================" << std::endl;
     std::cout << " [현재 골드 : " << player.getGold() << "G]" << std::endl;
     std::cout << "  >>> ";
-    std::cin >> itemselect; // 아이템 선택
+    std::cin >> itemselect;
     
     switch (itemselect)
     {
@@ -192,27 +192,27 @@ void Shop::sellitem()
         std::cin >> itemsell; //판매할 아이템 수량
         system("cls");
 
-        AttackBoost* atkItem = nullptr;
+        HealthPotion* hpItem = nullptr;
         for (auto* it : player.Getinv()) {
-            if (auto* ab = dynamic_cast<AttackBoost*>(it)) {
-                atkItem = ab;
+            if (auto* hp = dynamic_cast<HealthPotion*>(it)) {
+                hpItem = hp;
                 break;
             }
         }
-        int available = atkItem ? atkItem->getCount() : 0;
+        int available = hpItem ? hpItem->getCount() : 0;
         if (itemsell <= 0 || itemsell > available) {
             std::cout << " 보유 수량이 부족합니다. (보유: " << available << "개)\n";
             break;
         }
         double total = (h.getPrice() * itemsell) * 0.6;
         player.setGold(player.getGold() + (int)total);
-        std::cout << " 경험치 증가 포션을 " << itemsell << " 개 판매 했습니다." << std::endl;
+        std::cout << " 체력 포션을 " << itemsell << " 개 판매 했습니다." << std::endl;
         std::cout << " [현재 골드 : " << player.getGold() << "G]\n";
-        for (int i = 0; i < itemsell; ++i) atkItem->lossItem();
-        if (atkItem->getCount() == 0) {
+        for (int i = 0; i < itemsell; ++i) hpItem->lossItem();
+        if (hpItem->getCount() == 0) {
             auto& inv = player.Getinv();
             for (size_t i = 0; i < inv.size(); ++i) {
-                if (inv[i] == atkItem) {
+                if (inv[i] == hpItem) {
                     delete inv[i];
                     inv.erase(inv.begin() + i);
                     break;
@@ -243,7 +243,7 @@ void Shop::sellitem()
         }
         double total = (a.getPrice() * itemsell) * 0.6;
         player.setGold(player.getGold() + (int)total);
-        std::cout << " 경험치 증가 포션을 " << itemsell << " 개 판매 했습니다." << std::endl;
+        std::cout << " 공격력 증가 포션을 " << itemsell << " 개 판매 했습니다." << std::endl;
         std::cout << " [현재 골드 : " << player.getGold() << "G]\n";
         for (int i = 0; i < itemsell; ++i) atkItem->lossItem();
         if (atkItem->getCount() == 0) {
@@ -266,14 +266,14 @@ void Shop::sellitem()
         std::cin >> itemsell;
         system("cls");
 
-        AttackBoost* atkItem = nullptr;
+        ExperienceBoost* expitem = nullptr;
         for (auto* it : player.Getinv()) {
-            if (auto* ab = dynamic_cast<AttackBoost*>(it)) {
-                atkItem = ab;
+            if (auto* ex = dynamic_cast<ExperienceBoost*>(it)) {
+                expitem = ex;
                 break;
             }
         }
-        int available = atkItem ? atkItem->getCount() : 0;
+        int available = expitem ? expitem->getCount() : 0;
         if (itemsell <= 0 || itemsell > available) {
             std::cout << " 보유 수량이 부족합니다. (보유: " << available << "개)\n";
             break;
@@ -282,11 +282,11 @@ void Shop::sellitem()
         player.setGold(player.getGold() + (int)total);
         std::cout << " 경험치 증가 포션을 " << itemsell << " 개 판매 했습니다." << std::endl;
         std::cout << " [현재 골드 : " << player.getGold() << "G]\n";
-        for (int i = 0; i < itemsell; ++i) atkItem->lossItem();
-        if (atkItem->getCount() == 0) {
+        for (int i = 0; i < itemsell; ++i) expitem->lossItem();
+        if (expitem->getCount() == 0) {
             auto& inv = player.Getinv();
             for (size_t i = 0; i < inv.size(); ++i) {
-                if (inv[i] == atkItem) {
+                if (inv[i] == expitem) {
                     delete inv[i];
                     inv.erase(inv.begin() + i);
                     break;

@@ -102,10 +102,11 @@ void Player::battle()  // 전투 승리시 골드 50획득
 
        if (win) 
        {
-       int rewardGold = (rand() % 2 == 0) ? 10 : 20; //rand = 0 이상 임의 정수(난수) 조건 비교 참10 : 거짓20
-       addExperience(50);
-       gold += rewardGold;
-       cout << " 보상 획득! + "<< rewardGold <<" 골드, +50 경험치 "<< "현재 골드\n" << gold << endl;
+           int rewardGold = (rand() % 2 == 0) ? 10 : 20; //rand = 0 이상 임의 정수(난수) 조건 비교 참10 : 거짓20
+           int rewardExp = rand() % 30;
+           gold += rewardGold;
+           experience += rewardExp;
+           cout << " 보상 획득! + " << rewardGold << " 골드, + " << rewardExp << " 경험치 [현재 골드" << gold << "]\n" << endl;
 
        int drop = rand() % 100; // 정수로 rand = (0~99) 1/100 = 1%
        if (drop < 30)  // 30가지로 즉 30%
@@ -150,7 +151,7 @@ void Player::battle()  // 전투 승리시 골드 50획득
                if (!found)
                {
                    cout << " 공격력 증가 포션을 획득했습니다! " << endl;
-                   AttackBoost* newPotion = new AttackBoost("공격력 증가 포션", 50, 1, 20);
+                   AttackBoost* newPotion = new AttackBoost("공격력 증가 포션", 10, 1, 20);
                    Getinv().push_back(newPotion);
                }
            }
@@ -171,7 +172,7 @@ void Player::battle()  // 전투 승리시 골드 50획득
                if (!found)
                {
                    cout << " 경험치 증가 포션을 획득했습니다! " << endl;
-                  ExperienceBoost* newPotion = new ExperienceBoost("경험치 증가 포션", 50, 1, 30);
+                  ExperienceBoost* newPotion = new ExperienceBoost("경험치 증가 포션", 20, 1, 30);
                    Getinv().push_back(newPotion);
                }
            }

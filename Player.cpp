@@ -96,16 +96,19 @@ void Player::addExperience(int amount) // 경험치
     }
 }
 
-string Player::battle() // 전투 승리시 골드 50획득
+bool Player::battle()  // 전투 승리시 골드 50획득
 {
-    TurnBattleFromPlayer(*this);
-     
-    bool win;
-    setGold(getGold() + 50);
+    bool win = TurnBattleFromPlayer(*this); //승패 결과 bool받아옴
 
-    cout << "보상 획득! 50골드가 지급되었습니다!" << endl;
-    return 0;
-}
+       if (win) 
+     {
+        int rewardGold = (rand() % 2 == 0) ? 10 : 20; //rand = 0 이상 임의 정수(난수) 조건 비교 참10 : 거짓20
+        addExperience(50);
+        gold += rewardGold;
+        cout << "보상 획득! 현재 골드: " << gold << endl;
+     }
+       return win;
+ }
 
 
 void Player::useItem()

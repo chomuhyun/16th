@@ -90,8 +90,8 @@ void Player::bossBattle()
 
     if (winBoss)
     {
-        int rewardGold = (rand() % 2 == 0) ? 70 : 100; //rand = 0 이상 임의 정수(난수) 조건 비교 참10 : 거짓20
-        int rewardExp = rand() % 50;
+        int rewardGold = (rand() % 2 == 0) ? 80 : 100; //rand = 0 이상 임의 정수(난수) 조건 비교 참10 : 거짓20
+        int rewardExp = 60;
         gold += rewardGold;
         addExperience(rewardExp);
         cout << " 보상 획득! + " << rewardGold << " 골드, + " << rewardExp << " 경험치 [현재 골드" << gold << "]\n" << endl;

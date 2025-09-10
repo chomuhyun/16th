@@ -55,7 +55,7 @@ void Shop::buyitem()
         else
         {
             player.setGold(player.getGold() - h.getPrice() * itembuy);
-            std::cout << " 체력 포션을" << itembuy << " 개 구매 했습니다." << std::endl;
+            std::cout << " 체력 포션을 " << itembuy << " 개 구매 했습니다." << std::endl;
             std::cout << " [남은 골드 : " << player.getGold() << "G]" << std::endl;
 
             bool found = false;
@@ -95,7 +95,7 @@ void Shop::buyitem()
         else
         {
             player.setGold(player.getGold() - a.getPrice() * itembuy);
-            std::cout << " 공격력 강화 포션을" << itembuy << " 개 구매 했습니다." << std::endl;
+            std::cout << " 공격력 강화 포션을 " << itembuy << " 개 구매 했습니다." << std::endl;
             std::cout << " [남은 골드 : " << player.getGold() << "G]" << std::endl;
 
             bool found = false;
@@ -127,15 +127,15 @@ void Shop::buyitem()
         system("cls");
         if (player.getGold() < total)
         {
-            std::cout << "===========================" << std::endl;
-            std::cout << "II !!골드가 부족합니다!! II" << std::endl;
-            std::cout << "II  처음으로 돌아갑니다  II" << std::endl;
+            std::cout << "  ===========================" << std::endl;
+            std::cout << "  II !!골드가 부족합니다!! II" << std::endl;
+            std::cout << "  II  처음으로 돌아갑니다  II" << std::endl;
             buyitem();
         }
         else
         {
             player.setGold(player.getGold() - e.getPrice() * itembuy);
-            std::cout << " 경험치 증가 포션을" << itembuy << " 개 구매 했습니다." << std::endl;
+            std::cout << " 경험치 증가 포션을 " << itembuy << " 개 구매 했습니다." << std::endl;
             std::cout << " [남은 골드 : " << player.getGold() << "G]" << std::endl;
 
             bool found = false;
@@ -176,7 +176,7 @@ void Shop::sellitem()
     int itemsell = 0; //아이템 판매 수량
     std::cout << " ==============================" << std::endl;
     std::cout << " II 무엇을 판매하시겠습니까? II" << std::endl;
-    std::cout << " II  1. 체력 포션            II\nII  2. 공격력 강화 포션     II\nII  3. 경험치 강화 포션     II\nII  4. 뒤로 가기            II" << std::endl;
+    std::cout << " II  1. 체력 포션            II\n II  2. 공격력 강화 포션     II\n II  3. 경험치 강화 포션     II\n II  4. 뒤로 가기            II" << std::endl;
     std::cout << " ==============================" << std::endl;
     std::cout << " [현재 골드 : " << player.getGold() << "G]" << std::endl;
     std::cout << "  >>> ";
@@ -206,6 +206,7 @@ void Shop::sellitem()
         }
         double total = (h.getPrice() * itemsell) * 0.6;
         player.setGold(player.getGold() + (int)total);
+        std::cout << " 경험치 증가 포션을 " << itemsell << " 개 판매 했습니다." << std::endl;
         std::cout << " [현재 골드 : " << player.getGold() << "G]\n";
         for (int i = 0; i < itemsell; ++i) atkItem->lossItem();
         if (atkItem->getCount() == 0) {
@@ -242,6 +243,7 @@ void Shop::sellitem()
         }
         double total = (a.getPrice() * itemsell) * 0.6;
         player.setGold(player.getGold() + (int)total);
+        std::cout << " 경험치 증가 포션을 " << itemsell << " 개 판매 했습니다." << std::endl;
         std::cout << " [현재 골드 : " << player.getGold() << "G]\n";
         for (int i = 0; i < itemsell; ++i) atkItem->lossItem();
         if (atkItem->getCount() == 0) {
@@ -278,6 +280,7 @@ void Shop::sellitem()
         }
         double total = (e.getPrice() * itemsell) * 0.6;
         player.setGold(player.getGold() + (int)total);
+        std::cout << " 경험치 증가 포션을 " << itemsell << " 개 판매 했습니다." << std::endl;
         std::cout << " [현재 골드 : " << player.getGold() << "G]\n";
         for (int i = 0; i < itemsell; ++i) atkItem->lossItem();
         if (atkItem->getCount() == 0) {

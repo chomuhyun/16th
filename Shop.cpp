@@ -29,7 +29,7 @@ void Shop::buyitem()
     int itembuy = 0; //아이템 구매 수량
     std::cout << " ==============================" << std::endl;
     std::cout << " II 무엇을 구매하시겠습니까? II" << std::endl;
-    std::cout << " II  1. 체력 포션            II\n II  2. 공격력 강화 포션     II\n II  3. 경험치 강화 포션     II\n II  4. 뒤로 가기            II" << std::endl;
+    std::cout << " II  1. 체력 포션            II\n II  2. 공격력 증가 포션     II\n II  3. 경험치 증가 포션     II\n II  4. 뒤로 가기            II" << std::endl;
     std::cout << " ==============================" << std::endl;
     std::cout << " [현재 골드 : " << player.getGold() << "G]" << std::endl;
     std::cout << "  >>> ";
@@ -80,7 +80,7 @@ void Shop::buyitem()
     case 2:
     {
         AttackBoost a("공격력 증가 포션", 10, 1, 20);
-        std::cout << " 공격력 강화를 선택하셨습니다. 몇개 구매하시겠습니까?" << std::endl;
+        std::cout << " 공격력 증가 포션을 선택하셨습니다. 몇개 구매하시겠습니까?" << std::endl;
         std::cout << " 구매할 갯수 >>> ";
         std::cin >> itembuy;
         double total = a.getPrice() * itembuy;
@@ -95,7 +95,7 @@ void Shop::buyitem()
         else
         {
             player.setGold(player.getGold() - a.getPrice() * itembuy);
-            std::cout << " 공격력 강화 포션을 " << itembuy << " 개 구매 했습니다." << std::endl;
+            std::cout << " 공격력 증가 포션을 " << itembuy << " 개 구매 했습니다." << std::endl;
             std::cout << " [남은 골드 : " << player.getGold() << "G]" << std::endl;
 
             bool found = false;
@@ -120,7 +120,7 @@ void Shop::buyitem()
     case 3:
     {
         ExperienceBoost e("경험치 증가 포션", 20, 1, 30);
-        std::cout << " 경험치 강화를 선택하셨습니다. 몇개 구매하시겠습니까?" << std::endl;
+        std::cout << " 경험치 증가 포션을 선택하셨습니다. 몇개 구매하시겠습니까?" << std::endl;
         std::cout << " 구매할 갯수 >>> ";
         std::cin >> itembuy;
         double total = e.getPrice() * itembuy;
@@ -176,7 +176,7 @@ void Shop::sellitem()
     int itemsell = 0; //아이템 판매 수량
     std::cout << " ==============================" << std::endl;
     std::cout << " II 무엇을 판매하시겠습니까? II" << std::endl;
-    std::cout << " II  1. 체력 포션            II\n II  2. 공격력 강화 포션     II\n II  3. 경험치 강화 포션     II\n II  4. 뒤로 가기            II" << std::endl;
+    std::cout << " II  1. 체력 포션            II\n II  2. 공격력 증가 포션     II\n II  3. 경험치 증가 포션     II\n II  4. 뒤로 가기            II" << std::endl;
     std::cout << " ==============================" << std::endl;
     std::cout << " [현재 골드 : " << player.getGold() << "G]" << std::endl;
     std::cout << "  >>> ";
@@ -218,13 +218,13 @@ void Shop::sellitem()
                     break;
                 }
             }
-        }
         break;
+        }
     }
     case 2:
     {
         AttackBoost a("공격력 증가 포션", 10, 1, 20);
-        std::cout << " 공격력 강화를 선택하셨습니다. 몇개 판매하시겠습니까?" << std::endl;
+        std::cout << " 공격력 증가 포션을 선택하셨습니다. 몇개 판매하시겠습니까?" << std::endl;
         std::cout << "  판매할 갯수 >>> ";
         std::cin >> itemsell;
         system("cls");
@@ -255,13 +255,13 @@ void Shop::sellitem()
                     break;
                 }
             }
-        }
         break;
+        }
     }
     case 3:
     {
         ExperienceBoost e("경험치 증가 포션", 20, 1, 30);
-        std::cout << " 경험치 강화를 선택하셨습니다. 몇개 판매하시겠습니까?" << std::endl;
+        std::cout << " 경험치 증가 포션을 선택하셨습니다. 몇개 판매하시겠습니까?" << std::endl;
         std::cout << " 판매할 갯수 >>> ";
         std::cin >> itemsell;
         system("cls");
@@ -292,8 +292,8 @@ void Shop::sellitem()
                     break;
                 }
             }
-        }
         break;
+        }
     }
     case 4:
     {

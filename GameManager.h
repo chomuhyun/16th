@@ -8,9 +8,7 @@ class GameManager
 {
 public:
 	GameManager(std::string nickname = "Default")
-		: player(nickname), shop(player) 
-	{
-	}
+		: player(nickname), shop(player) {}
 	~GameManager() {}
 	
 	string nickname;
@@ -22,7 +20,6 @@ public:
 
 	void displayInventory();
 
-	void generateBossMonster();
 private:
 	
 	Player player;

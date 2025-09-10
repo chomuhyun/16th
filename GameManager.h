@@ -22,15 +22,9 @@ public:
 
 	void displayInventory();
 
-	void generateMonster();
-
-	void battle();
-
 	void generateBossMonster();
 private:
 	
 	Player player;
 	Shop shop;
-	//Monster monster;
-	//unique_ptr<Monster> nearbyMonster;
 };

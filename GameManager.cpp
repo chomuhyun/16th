@@ -33,14 +33,20 @@ void GameManager::GameStart()
 void GameManager::selectAction() 
 {   
 	int selectaction;
-	cout << " ==============원하시는 선택지를 골라주세요==============\n" << endl;
+	cout << " ==============    16조 마을 입니다 !    ==============\n" << endl;
+	cout << " ============== 원하는 것을 선택해주세요!==============\n" << endl;
 	cout << " 전투 - 1.\n 상점 - 2.\n 가방 확인 - 3.\n 스텟 관리 - 4.\n 게임 종료 - 5.\n" << endl;
 	cin >> selectaction;
 	switch (selectaction)
 	{
 	case 1:
 		system("cls");
-		//TurnBattle(player.getMaxHealth(),player.getAttack(),player.getLevel());
+		//TurnBattleFromPlayer(player);
+		player.battle();
+		cout << "\n" << endl;
+		system("pause");
+		system("cls");
+		selectAction();
 		break;
 	case 2:
 		system("cls");
@@ -55,7 +61,7 @@ void GameManager::selectAction()
 		system("cls");
 		cout << " ==============원하시는 선택지를 골라주세요==============\n" << endl;
 		cout << " 체력 포션 - 1.\n 공격력 증가 포션 - 2.\n 경험치 포션 - 3.\n 나가기 - 0.\n" << endl;
-		cout << " ========================================================" << endl;
+		cout << " ========================================================\n" << endl;
 		cout << " 현재 보유 포션 목록 \n" << endl;
 		Inventory inv;
 		inv.PrintCurrentItemAndGold(player);
@@ -107,13 +113,6 @@ void GameManager::displayInventory()
 		system("cls");
 		selectAction();
 	}
-}
-
-void GameManager::generateMonster()
-{
-	system("cls");
-	//nearbyMonster = unique_ptr<Monster>();
-	//cout << "몬스터 : " << nearbyMonster->getName() << "가(이) 나타났습니다!" << endl;
 }
 
 void GameManager::generateBossMonster()

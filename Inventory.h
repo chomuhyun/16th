@@ -71,5 +71,5 @@ public:
 	Inventory() {}
 	~Inventory() {}
 
-	void PrintCurrentItemAndGold(Player& player, HealthPotion& hp, AttackBoost& ab, ExperienceBoost& exp); // 현재 아이템 개수 및 골드 출력 선언
+	void PrintCurrentItemAndGold(Player& player); // 현재 아이템 개수 및 골드 출력 선언
 };

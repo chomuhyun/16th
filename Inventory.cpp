@@ -84,8 +84,7 @@ std::string ExperienceBoost::getName() { // 경험치 부스트 이름 반환 함수
 }
 
 void ExperienceBoost::use(Player& player) { // 경험치 부스트 사용 후 경험치 증가 함수
-	int currentExperience = player.getExperience();           // getter로 읽고
-	player.addExperience(currentExperience + experienceIncrease); // setter로 경험치 증가
+	player.addExperience(experienceIncrease); // setter로 경험치 증가
 	std::cout << "\n" << name << " 사용! 경험치 " << experienceIncrease << "만큼 획득하었습니다." << "\n";
 
 }

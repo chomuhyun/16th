@@ -64,5 +64,5 @@ public:
 Monster* SpawnByIndex(int index, int level); 
 
 // 플레이어 쪽 변수명 통일: hp/atk/lv 
-void TurnBattle(int& hp, int atk, int lv); 
-void TurnBattleFromPlayer(Player& p);
+bool TurnBattle(int& getHealth, int getAttack, int getLevel);
+bool TurnBattleFromPlayer(Player& p);

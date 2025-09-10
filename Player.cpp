@@ -101,12 +101,36 @@ void Player::battle()  // 전투 승리시 골드 50획득
     bool win = TurnBattleFromPlayer(*this); //승패 결과 bool받아옴
 
        if (win) 
-   {
+       {
        int rewardGold = (rand() % 2 == 0) ? 10 : 20; //rand = 0 이상 임의 정수(난수) 조건 비교 참10 : 거짓20
        addExperience(50);
        gold += rewardGold;
-       cout << "보상 획득! +"<< rewardGold <<"골드, +50 경험치 "<< "현재 골드" << gold << endl;
-   }
+       cout << " 보상 획득! + "<< rewardGold <<" 골드, +50 경험치 "<< "현재 골드\n" << gold << endl;
+
+       int drop = rand() % 100; // 정수로 rand = (0~99) 1/100 = 1%
+          if (drop < 30); // 30가지로 즉 30%
+             
+          int item = rand() % 3;   // 0, 1, 2 중 하나 뽑음
+
+          if (item == 0) 
+          {
+              inv.push_back(new HealthPotion("체력 포션", 50, 1, 10));
+
+              cout << " 체력 포션을 획득했습니다! " << endl;
+          }
+          else if (item == 1)
+          {
+              inv.push_back(new AttackBoost("공격력 증가 포션", 10, 1, 20));
+
+              cout << " 공격력 증가 포션을 획득했습니다! " << endl;
+          }
+          else
+          {
+              inv.push_back(new ExperienceBoost("경험치 증가 포션", 20, 1, 30));
+
+              cout << " 경험치 증가 포션을 획득했습니다! " << endl;
+          }
+       }
       else
       {
          health = MaxHealth / 2;
@@ -153,8 +177,6 @@ void Player::useItem()
         return;
     }
 
-    selectedItem->use(*this); //아이템 사용
-
     if (health >= MaxHealth && input == 1 ) //현재체력이 최대 체력보다 크고, input이 1일때
     {
         std::cout << "체력이 가득 찼습니다! 포션을 사용할 수 없습니다." << endl;
@@ -162,6 +184,7 @@ void Player::useItem()
     }
     else 
     {
+        selectedItem->use(*this); //아이템 사용
         selectedItem->lossItem();
     }
 

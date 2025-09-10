@@ -55,6 +55,8 @@ bool TurnBattle(int& hp, int atk, int lv, const std::string& playerName) {
 
     std::cout << "\n\n=== 야생의 " << mon->getName() << " 이(가) 나타났다! ===\n\n";
     mon->show();
+    mon->roar();
+    std::cout << '\n';
 
     bool playerTurn = true; // 플레이어 선공
 
@@ -105,6 +107,8 @@ bool BossBattle(int& hp, int atk, int lv, const std::string& playerName) {
 
     std::cout << "\n=== 보스 등장: " << boss->getName() << " ===\n\n";
     boss->show();
+    boss->roar();
+    std::cout << '\n';
 
     bool playerTurn = true;  // 플레이어 선공
 

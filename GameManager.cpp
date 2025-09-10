@@ -34,7 +34,7 @@ void GameManager::selectAction()
 {   
 	int selectaction;
 	cout << " ==============원하시는 선택지를 골라주세요==============\n" << endl;
-	cout << " 전투 - 1.\n 상점 - 2.\n 가방 확인 - 3.\n 스텟 관리 - 4.\n" << endl;
+	cout << " 전투 - 1.\n 상점 - 2.\n 가방 확인 - 3.\n 스텟 관리 - 4.\n 게임 종료 - 5.\n" << endl;
 	cin >> selectaction;
 	switch (selectaction)
 	{
@@ -63,8 +63,13 @@ void GameManager::selectAction()
 		player.displayStatus();
 		selectAction();
 	}
+	case 5:
+		return ;
 		break;
 	default:
+		system("cls");
+		cout << " ========잘못 입력하셨습니다! 다시 선택해주세요!======== \n" << endl;
+		selectAction();
 		break;
 	}
 }
@@ -109,11 +114,6 @@ void GameManager::generateMonster()
 	system("cls");
 	//nearbyMonster = unique_ptr<Monster>();
 	//cout << "몬스터 : " << nearbyMonster->getName() << "가(이) 나타났습니다!" << endl;
-}
-
-void GameManager::battle()
-{
-	system("cls");
 }
 
 void GameManager::generateBossMonster()

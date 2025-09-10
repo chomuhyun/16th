@@ -15,7 +15,7 @@ public:
 	
 	Monster(string n, int h, int a) 
 		: m_name(n), m_hp(h), m_atk(a), m_lv(1) { } 
-	virtual ~Monster() {} 
+	virtual ~Monster() {} // 몬스터 사망시 몬스터 스텟 삭제로 안전장치
 	
 	// getter (이름 유지 + 레벨 추가) 
 	const string& getName() const noexcept { return m_name; } 
@@ -40,29 +40,36 @@ public:
 // 파생 몬스터들 (m_lv 설정 추가) 
 class Goblin : public Monster { 
 public: 
-	Goblin(int lv) : Monster("Goblin", 10 + lv * 1, 1 + lv) { m_lv = lv; } 
+	Goblin(int lv) : Monster("Goblin", 10 + lv * 10, 10 * lv) { m_lv = lv; } 
 	void roar() override { cout << "Goblin: 끼익!" << endl;} 
 }; 
 class Orc : public Monster { 
 public: 
-	Orc(int lv) : Monster("Orc", 20 + lv * 2, 2 + lv) { m_lv = lv; } 
+	Orc(int lv) : Monster("Orc", 20 + lv * 20, 20 * lv) { m_lv = lv; } 
 	void roar() override { cout << "Orc: 취익!" << endl; } 
 }; 
 class Troll : public Monster { 
 public: 
-	Troll(int lv) : Monster("Troll", 30 + lv * 3, 3 + lv) { m_lv = lv; } 
+	Troll(int lv) : Monster("Troll", 30 + lv * 30, 30 * lv) { m_lv = lv; } 
 	void roar() override { cout << "Troll: 쿠워어!" << endl; }
 }; 
 class Slime : public Monster { 
 public: 
-	Slime(int lv) : Monster("Slime", 40 + lv * 4, 4 + lv) { m_lv = lv; } 
+	Slime(int lv) : Monster("Slime", 40 + lv * 40, 40 * lv) { m_lv = lv; } 
 	void roar() override { cout << "Slime: 탱글" << endl; } 
+};
+class Invisible_Dragon : public Monster {
+public:
+	Invisible_Dragon(int lv) : Monster("Invisible_Dragon", 40 + lv * 40, 40 * lv) { m_lv = lv; }
+	void roar() override { cout << "Invisible_Dragon: 투명드래곤은 존나게 쎘다" << endl; }
 };
 
 // === 턴제 전투 유틸 (전역 선언) ===
 //index: 0=Goblin, 1=Orc, 2=Troll, 3=Slime 
 Monster* SpawnByIndex(int index, int level); 
 
-// 플레이어 쪽 변수명 통일: hp/atk/lv//name 
 bool TurnBattle(int& hp, int atk, int lv, const std::string& playerName);
 bool TurnBattleFromPlayer(Player& p);
+
+bool BossBattle(int& hp, int atk, int lv, const std::string& playerName);
+bool BossBattleFromPlayer(Player& p);

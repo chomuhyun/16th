@@ -105,7 +105,7 @@ bool Player::battle()  // 전투 승리시 골드 50획득
         int rewardGold = (rand() % 2 == 0) ? 10 : 20; //rand = 0 이상 임의 정수(난수) 조건 비교 참10 : 거짓20
         addExperience(50);
         gold += rewardGold;
-        cout << "보상 획득! 현재 골드: " << gold << endl;
+        cout << "보상 획득! +"<< rewardGold <<"골드, +50 경험치 "<< "현재 골드" << gold << endl;
      }
        return win;
  }

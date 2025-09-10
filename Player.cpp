@@ -121,7 +121,7 @@ void Player::useItem()
     std::cin >> input;
 
     Item* selectedItem = nullptr;
-    int index = 1;
+    int index = -1;
 
     auto& inventory = Getinv();
 
@@ -153,18 +153,23 @@ void Player::useItem()
         return;
     }
 
-    selectedItem->use(*this);
+    selectedItem->use(*this); //아이템 사용
 
-    if (health >= MaxHealth && input == 1 ) //현재체력이 최대 체력보다 크다면 실행
+    if (health >= MaxHealth && input == 1 ) //현재체력이 최대 체력보다 크고, input이 1일때
     {
         std::cout << "체력이 가득 찼습니다! 포션을 사용할 수 없습니다." << endl;
         return;
     }
-    else
+    else 
     {
         selectedItem->lossItem();
+    }
 
-        delete selectedItem;
-        inventory.erase(inventory.begin() + index);
+    if (selectedItem->getCount() <= 0) // 아이템 수량이 0보다 작을때 객체를 지운다
+    {
+        delete selectedItem; //동적 할당된 객체 메모리 해제
+        inventory.erase(inventory.begin() + index); //인벤토리에서 제거
+        return;
     }
 }
+

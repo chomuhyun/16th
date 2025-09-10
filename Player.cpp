@@ -108,28 +108,74 @@ void Player::battle()  // 전투 승리시 골드 50획득
        cout << " 보상 획득! + "<< rewardGold <<" 골드, +50 경험치 "<< "현재 골드\n" << gold << endl;
 
        int drop = rand() % 100; // 정수로 rand = (0~99) 1/100 = 1%
-          if (drop < 30); // 30가지로 즉 30%
-             
-          int item = rand() % 3;   // 0, 1, 2 중 하나 뽑음
+       if (drop < 30)  // 30가지로 즉 30%
+       {
+           int item = rand() % 3;   // 0, 1, 2 중 하나 뽑음
 
-          if (item == 0) 
-          {
-              inv.push_back(new HealthPotion("체력 포션", 50, 1, 10));
-
-              cout << " 체력 포션을 획득했습니다! " << endl;
-          }
-          else if (item == 1)
-          {
-              inv.push_back(new AttackBoost("공격력 증가 포션", 10, 1, 20));
-
-              cout << " 공격력 증가 포션을 획득했습니다! " << endl;
-          }
-          else
-          {
-              inv.push_back(new ExperienceBoost("경험치 증가 포션", 20, 1, 30));
-
-              cout << " 경험치 증가 포션을 획득했습니다! " << endl;
-          }
+           if (item == 0)
+           {
+               bool found = false;
+               for (auto& item : Getinv())
+               {
+                   if (item->getName() == "체력 포션")
+                   {
+                       for (int i = 0; i < 1; ++i)
+                           item->gainItem();
+                       found = true;
+                       cout << " 체력 포션을 획득했습니다! " << endl;
+                       break;
+                   }
+               }
+               if (!found)
+               {
+                   cout << " 체력 포션을 획득했습니다! " << endl;
+                   HealthPotion* newPotion = new HealthPotion("체력 포션", 50, 1, 10);
+                   Getinv().push_back(newPotion);
+               }
+           }
+           else if (item == 1)
+           {
+               bool found = false;
+               for (auto& item : Getinv())
+               {
+                   if (item->getName() == "공격력 증가 포션")
+                   {
+                       for (int i = 0; i < 1; ++i)
+                           item->gainItem();
+                       found = true;
+                       cout << " 공격력 증가 포션을 획득했습니다! " << endl;
+                       break;
+                   }
+               }
+               if (!found)
+               {
+                   cout << " 공격력 증가 포션을 획득했습니다! " << endl;
+                   AttackBoost* newPotion = new AttackBoost("공격력 증가 포션", 50, 1, 20);
+                   Getinv().push_back(newPotion);
+               }
+           }
+           else
+           {
+               bool found = false;
+               for (auto& item : Getinv())
+               {
+                   if (item->getName() == "경험치 증가 포션")
+                   {
+                       for (int i = 0; i < 1; ++i)
+                           item->gainItem();
+                       found = true;
+                       cout << " 경험치 증가 포션을 획득했습니다! " << endl;
+                       break;
+                   }
+               }
+               if (!found)
+               {
+                   cout << " 경험치 증가 포션을 획득했습니다! " << endl;
+                  ExperienceBoost* newPotion = new ExperienceBoost("경험치 증가 포션", 50, 1, 30);
+                   Getinv().push_back(newPotion);
+               }
+           }
+       }
        }
       else
       {

@@ -27,12 +27,12 @@ void Shop::buyitem()
 
     int itemselect = 0; //아이템 선택
     int itembuy = 0; //아이템 구매 수량
-    std::cout << "==============================" << std::endl;
-    std::cout << "II 무엇을 구매하시겠습니까? II" << std::endl;
-    std::cout << "II  1. 체력 포션            II\nII  2. 공격력 강화 포션     II\nII  3. 경험치 강화 포션     II\nII  4. 뒤로 가기            II" << std::endl;
-    std::cout << "==============================" << std::endl;
-    std::cout << "[현재 골드 : " << player.getGold() << "G]" << std::endl;
-    std::cout << " >>> ";
+    std::cout << " ==============================" << std::endl;
+    std::cout << " II 무엇을 구매하시겠습니까? II" << std::endl;
+    std::cout << " II  1. 체력 포션            II\n II  2. 공격력 강화 포션     II\n II  3. 경험치 강화 포션     II\n II  4. 뒤로 가기            II" << std::endl;
+    std::cout << " ==============================" << std::endl;
+    std::cout << " [현재 골드 : " << player.getGold() << "G]" << std::endl;
+    std::cout << "  >>> ";
     std::cin >> itemselect; // 아이템 선택
     
     switch (itemselect)
@@ -40,23 +40,23 @@ void Shop::buyitem()
     case 1:
     {
         HealthPotion h("체력 포션", 50, 1, 10);
-        std::cout << "체력 포션을 선택하셨습니다. 몇개 구매하시겠습니까?" << std::endl;
+        std::cout << " 체력 포션을 선택하셨습니다. 몇개 구매하시겠습니까?" << std::endl;
         std::cout << " 구매할 갯수 >>> ";
         std::cin >> itembuy;
         system("cls");
         double total = h.getPrice() * itembuy; // total = 물건 가격 * 아이템 구매 수량
         if (player.getGold() < total)
         {
-            std::cout << "===========================" << std::endl;
-            std::cout << "II !!골드가 부족합니다!! II" << std::endl;
-            std::cout << "II  처음으로 돌아갑니다  II" << std::endl;
+            std::cout << " ===========================" << std::endl;
+            std::cout << " II !!골드가 부족합니다!! II" << std::endl;
+            std::cout << " II  처음으로 돌아갑니다  II" << std::endl;
             buyitem();
         }
         else
         {
             player.setGold(player.getGold() - h.getPrice() * itembuy);
-            std::cout << "체력 포션을" << itembuy << " 개 구매 했습니다." << std::endl;
-            std::cout << "[남은 골드 : " << player.getGold() << "G]" << std::endl;
+            std::cout << " 체력 포션을 " << itembuy << " 개 구매 했습니다." << std::endl;
+            std::cout << " [남은 골드 : " << player.getGold() << "G]" << std::endl;
 
             bool found = false;
             for (auto& item : player.Getinv())
@@ -80,23 +80,23 @@ void Shop::buyitem()
     case 2:
     {
         AttackBoost a("공격력 증가 포션", 10, 1, 20);
-        std::cout << "공격력 강화를 선택하셨습니다. 몇개 구매하시겠습니까?" << std::endl;
+        std::cout << " 공격력 강화를 선택하셨습니다. 몇개 구매하시겠습니까?" << std::endl;
         std::cout << " 구매할 갯수 >>> ";
         std::cin >> itembuy;
         double total = a.getPrice() * itembuy;
         system("cls");
         if (player.getGold() < total)
         {
-            std::cout << "===========================" << std::endl;
-            std::cout << "II !!골드가 부족합니다!! II" << std::endl;
-            std::cout << "II  처음으로 돌아갑니다  II" << std::endl;
+            std::cout << " ===========================" << std::endl;
+            std::cout << " II !!골드가 부족합니다!! II" << std::endl;
+            std::cout << " II  처음으로 돌아갑니다  II" << std::endl;
             buyitem();
         }
         else
         {
             player.setGold(player.getGold() - a.getPrice() * itembuy);
-            std::cout << "공격력 강화 포션을" << itembuy << " 개 구매 했습니다." << std::endl;
-            std::cout << "[남은 골드 : " << player.getGold() << "G]" << std::endl;
+            std::cout << " 공격력 강화 포션을 " << itembuy << " 개 구매 했습니다." << std::endl;
+            std::cout << " [남은 골드 : " << player.getGold() << "G]" << std::endl;
 
             bool found = false;
             for (auto& item : player.Getinv())
@@ -120,23 +120,23 @@ void Shop::buyitem()
     case 3:
     {
         ExperienceBoost e("경험치 증가 포션", 20, 1, 30);
-        std::cout << "경험치 강화를 선택하셨습니다. 몇개 구매하시겠습니까?" << std::endl;
+        std::cout << " 경험치 강화를 선택하셨습니다. 몇개 구매하시겠습니까?" << std::endl;
         std::cout << " 구매할 갯수 >>> ";
         std::cin >> itembuy;
         double total = e.getPrice() * itembuy;
         system("cls");
         if (player.getGold() < total)
         {
-            std::cout << "===========================" << std::endl;
-            std::cout << "II !!골드가 부족합니다!! II" << std::endl;
-            std::cout << "II  처음으로 돌아갑니다  II" << std::endl;
+            std::cout << "  ===========================" << std::endl;
+            std::cout << "  II !!골드가 부족합니다!! II" << std::endl;
+            std::cout << "  II  처음으로 돌아갑니다  II" << std::endl;
             buyitem();
         }
         else
         {
             player.setGold(player.getGold() - e.getPrice() * itembuy);
-            std::cout << "경험치 증가 포션을" << itembuy << " 개 구매 했습니다." << std::endl;
-            std::cout << "[남은 골드 : " << player.getGold() << "G]" << std::endl;
+            std::cout << " 경험치 증가 포션을 " << itembuy << " 개 구매 했습니다." << std::endl;
+            std::cout << " [남은 골드 : " << player.getGold() << "G]" << std::endl;
 
             bool found = false;
             for (auto& item : player.Getinv())
@@ -160,7 +160,7 @@ void Shop::buyitem()
     case 4:
     {
         system("cls");
-        std::cout << "메뉴 선택으로 돌아갑니다." << endl;
+        std::cout << " 메뉴 선택으로 돌아갑니다." << endl;
         displayitem();
     }
     default:
@@ -174,12 +174,12 @@ void Shop::sellitem()
 {
     int itemselect = 0; //아이템 선택
     int itemsell = 0; //아이템 판매 수량
-    std::cout << "==============================" << std::endl;
-    std::cout << "II 무엇을 판매하시겠습니까? II" << std::endl;
-    std::cout << "II  1. 체력 포션            II\nII  2. 공격력 강화 포션     II\nII  3. 경험치 강화 포션     II\nII  4. 뒤로 가기            II" << std::endl;
-    std::cout << "==============================" << std::endl;
-    std::cout << "[현재 골드 : " << player.getGold() << "G]" << std::endl;
-    std::cout << " >>> ";
+    std::cout << " ==============================" << std::endl;
+    std::cout << " II 무엇을 판매하시겠습니까? II" << std::endl;
+    std::cout << " II  1. 체력 포션            II\n II  2. 공격력 강화 포션     II\n II  3. 경험치 강화 포션     II\n II  4. 뒤로 가기            II" << std::endl;
+    std::cout << " ==============================" << std::endl;
+    std::cout << " [현재 골드 : " << player.getGold() << "G]" << std::endl;
+    std::cout << "  >>> ";
     std::cin >> itemselect;
 
     switch (itemselect)
@@ -187,7 +187,7 @@ void Shop::sellitem()
     case 1:
     {
         HealthPotion h("체력 포션", 50, 1, 10);
-        std::cout << "체력 포션을 선택하셨습니다. 몇개 판매하시겠습니까?" << std::endl;
+        std::cout << " 체력 포션을 선택하셨습니다. 몇개 판매하시겠습니까?" << std::endl;
         std::cout << " 판매할 갯수 >>> ";
         std::cin >> itemsell; //판매할 아이템 수량
         system("cls");
@@ -201,12 +201,13 @@ void Shop::sellitem()
         }
         int available = atkItem ? atkItem->getCount() : 0;
         if (itemsell <= 0 || itemsell > available) {
-            std::cout << "보유 수량이 부족합니다. (보유: " << available << "개)\n";
+            std::cout << " 보유 수량이 부족합니다. (보유: " << available << "개)\n";
             break;
         }
         double total = (h.getPrice() * itemsell) * 0.6;
-        player.setGold(player.getGold() + total);
-        std::cout << "[현재 골드 : " << player.getGold() << "G]\n";
+        player.setGold(player.getGold() + (int)total);
+        std::cout << " 경험치 증가 포션을 " << itemsell << " 개 판매 했습니다." << std::endl;
+        std::cout << " [현재 골드 : " << player.getGold() << "G]\n";
         for (int i = 0; i < itemsell; ++i) atkItem->lossItem();
         if (atkItem->getCount() == 0) {
             auto& inv = player.Getinv();
@@ -223,8 +224,8 @@ void Shop::sellitem()
     case 2:
     {
         AttackBoost a("공격력 증가 포션", 10, 1, 20);
-        std::cout << "공격력 강화를 선택하셨습니다. 몇개 판매하시겠습니까?" << std::endl;
-        std::cout << " 판매할 갯수 >>> ";
+        std::cout << " 공격력 강화를 선택하셨습니다. 몇개 판매하시겠습니까?" << std::endl;
+        std::cout << "  판매할 갯수 >>> ";
         std::cin >> itemsell;
         system("cls");
 
@@ -237,12 +238,13 @@ void Shop::sellitem()
         }
         int available = atkItem ? atkItem->getCount() : 0;
         if (itemsell <= 0 || itemsell > available) {
-            std::cout << "보유 수량이 부족합니다. (보유: " << available << "개)\n";
+            std::cout << " 보유 수량이 부족합니다. (보유: " << available << "개)\n";
             break;
         }
         double total = (a.getPrice() * itemsell) * 0.6;
-        player.setGold(player.getGold() + total);
-        std::cout << "[현재 골드 : " << player.getGold() << "G]\n";
+        player.setGold(player.getGold() + (int)total);
+        std::cout << " 경험치 증가 포션을 " << itemsell << " 개 판매 했습니다." << std::endl;
+        std::cout << " [현재 골드 : " << player.getGold() << "G]\n";
         for (int i = 0; i < itemsell; ++i) atkItem->lossItem();
         if (atkItem->getCount() == 0) {
             auto& inv = player.Getinv();
@@ -259,7 +261,7 @@ void Shop::sellitem()
     case 3:
     {
         ExperienceBoost e("경험치 증가 포션", 20, 1, 30);
-        std::cout << "경험치 강화를 선택하셨습니다. 몇개 판매하시겠습니까?" << std::endl;
+        std::cout << " 경험치 강화를 선택하셨습니다. 몇개 판매하시겠습니까?" << std::endl;
         std::cout << " 판매할 갯수 >>> ";
         std::cin >> itemsell;
         system("cls");
@@ -273,12 +275,13 @@ void Shop::sellitem()
         }
         int available = atkItem ? atkItem->getCount() : 0;
         if (itemsell <= 0 || itemsell > available) {
-            std::cout << "보유 수량이 부족합니다. (보유: " << available << "개)\n";
+            std::cout << " 보유 수량이 부족합니다. (보유: " << available << "개)\n";
             break;
         }
         double total = (e.getPrice() * itemsell) * 0.6;
-        player.setGold(player.getGold() + total);
-        std::cout << "[현재 골드 : " << player.getGold() << "G]\n";
+        player.setGold(player.getGold() + (int)total);
+        std::cout << " 경험치 증가 포션을 " << itemsell << " 개 판매 했습니다." << std::endl;
+        std::cout << " [현재 골드 : " << player.getGold() << "G]\n";
         for (int i = 0; i < itemsell; ++i) atkItem->lossItem();
         if (atkItem->getCount() == 0) {
             auto& inv = player.Getinv();
@@ -294,12 +297,12 @@ void Shop::sellitem()
     }
     case 4:
     {
-        std::cout << "메뉴 선택으로 돌아갑니다." << endl;
+        std::cout << " 메뉴 선택으로 돌아갑니다." << endl;
         system("cls");
         displayitem();
     }
     default:
-        std::cout << "잘못된 선택입니다. 다시 선택해주세요." << std::endl;
+        std::cout << " 잘못된 선택입니다. 다시 선택해주세요." << std::endl;
         break;
     }
 };
@@ -310,20 +313,20 @@ void Shop::displayitem()
 
     while (true)
     {
-        cout << "\n=!=!=!=!=!상점 물품 목록!=!=!=!=!=\n";
+        cout << "\n =!=!=!=!=!= 상점 물품 목록 =!=!=!=!=!=\n" << endl;
         for (int i = 0; i < (int)ShopList.size(); ++i) {
             Item* ip = ShopList[i];
             cout << i + 1 << ". [이름: " << ip->getName()
-                << ", 가격: " << ip->getPrice() << "G]\n" << endl;
+                << " , 가격: " << ip->getPrice() << "G]\n" << endl;
         }
-        std::cout << "[현재 골드 : " << player.getGold() << "G]" << std::endl;
-        std::cout << "==========================" << std::endl;
-        std::cout << "II 메뉴를  선택해주세요 II"<< std::endl;
-        std::cout << "II   1.포션 구매하기    II" << std::endl;
-        std::cout << "II   2.포션 판매하기    II" << std::endl;
-        std::cout << "II   3.포션상점 나가기  II" << std::endl;
-        std::cout << "==========================" << std::endl;
-        std::cout << " >>> ";
+        std::cout << " [현재 골드 : " << player.getGold() << "G]" << std::endl;
+        std::cout << " ==========================" << std::endl;
+        std::cout << " II 메뉴를  선택해주세요 II"<< std::endl;
+        std::cout << " II   1.포션 구매하기    II" << std::endl;
+        std::cout << " II   2.포션 판매하기    II" << std::endl;
+        std::cout << " II   3.포션상점 나가기  II" << std::endl;
+        std::cout << " ==========================" << std::endl;
+        std::cout << "  >>> ";
         std::cin >> Shopmenu;
         switch (Shopmenu)
         {
@@ -337,10 +340,10 @@ void Shop::displayitem()
             break;
         case 3:
             return;
-            std::cout << "상점을 나갑니다." << endl;
+            std::cout << " 상점을 나갑니다." << endl;
             break;
         default:
-            std::cout << "잘못된 입력입니다." << std::endl;
+            std::cout << " 잘못된 입력입니다." << std::endl;
             break;
         };
     };

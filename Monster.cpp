@@ -23,7 +23,7 @@ bool Monster::getMIsDead() const { return isMDead(); }
 // 공식은 (캐릭터현재체력+캐릭터공격력)%4
 Monster* SpawnByIndex(int index, int level) {
     int i = index % 4;
-    if (i < 0) i += 4;
+    if (i < 0) i += 4; // 음수가 나오지는 않겠지만, 안전한처리
     switch (i) {
     case 0: return new Goblin(level);
     case 1: return new Orc(level);
@@ -33,16 +33,18 @@ Monster* SpawnByIndex(int index, int level) {
 }
 
 // 플레이어 객체로부터 hp/atk/lv를 받아 전투 시작
-void TurnBattleFromPlayer(Player& p) {
+bool TurnBattleFromPlayer(Player& p) {
     int hp = p.getHealth();
     int atk = p.getAttack();
     int lv = p.getLevel();
-    TurnBattle(hp, atk, lv);
-    p.setHealth(hp); // 전투 결과 반영
+    
+    bool win = TurnBattle(hp, atk, lv);  // ← 전투 결과
+    p.setHealth(hp);                      // 전투 후 HP 반영
+    return win;
 }
 
 // 턴제 전투 (플레이어 변수명: hp/atk/lv)
-void TurnBattle(int& hp, int atk, int lv) {
+bool TurnBattle(int& hp, int atk, int lv) {
     // 플레이어 lv의 0.7~1.3배 정수 범위
     int minLv = (7 * lv) / 10;                if (minLv < 1) minLv = 1;
     int maxLv = (13 * lv + 9) / 10;           if (maxLv < minLv) maxLv = minLv;
@@ -74,12 +76,14 @@ void TurnBattle(int& hp, int atk, int lv) {
         playerTurn = !playerTurn;
     }
 
-    if (hp <= 0) {
-        std::cout << "패배\n";
+    bool win = (hp > 0);  // 루프가 끝났는데 내가 살아 있으면 = 몬스터 처치
+    if (win) {
+        std::cout << mon->getName() << " 승리\n";
     }
     else {
-        std::cout << mon->getName() << " 승리\n";
+        std::cout << "패배\n";
     }
 
     delete mon; // 동적 할당 정리
+    return win;
 }

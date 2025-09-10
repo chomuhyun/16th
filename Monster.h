@@ -65,4 +65,4 @@ Monster* SpawnByIndex(int index, int level);
 
 // 플레이어 쪽 변수명 통일: hp/atk/lv//name 
 bool TurnBattle(int& hp, int atk, int lv, const std::string& playerName);
-bool TurnBattleFromPlayer(Player& p);// 1
+bool TurnBattleFromPlayer(Player& p);

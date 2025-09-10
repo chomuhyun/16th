@@ -104,8 +104,26 @@ int ExperienceBoost::lossItem()//경험치 부스트 개수 -1
 	}
 }
 //***** 아이템 현재 갯수 및 골드 출력
-void Inventory::PrintCurrentItemAndGold(Player& player, HealthPotion& hp, AttackBoost& ab, ExperienceBoost& exp) {
-	std::cout << "[체력 포션: " << hp.getCount() << "개, 공격력 증가 포션: " << ab.getCount() <<"개, 경험치 증가 포션: "<< exp.getCount() <<
-		"개, 현재 Gold: " << player.getGold() << "G]" << std::endl;
+void Inventory::PrintCurrentItemAndGold(Player& player) {
+	int hpCount = 0;
+	int abCount = 0;
+	int expCount = 0;
+
+	for (auto* item : player.Getinv()) {
+		if (auto* h = dynamic_cast<HealthPotion*>(item)) {
+			hpCount += h->getCount();
+		}
+		else if (auto* a = dynamic_cast<AttackBoost*>(item)) {
+			abCount += a->getCount();
+		}
+		else if (auto* e = dynamic_cast<ExperienceBoost*>(item)) {
+			expCount += e->getCount();
+		}
+	}
+
+	std::cout << "[체력 포션: " << hpCount
+		<< "개, 공격력 증가 포션: " << abCount
+		<< "개, 경험치 증가 포션: " << expCount
+		<< "개, 현재 Gold: " << player.getGold() << "G]\n";
 }
 
